@@ -7,7 +7,7 @@
 ## ⚽️ 项目信息
 
 - Github: [Enigma](https://github.com/Redlotus794/Enigma)
-- 通用文档项目：[]
+- 通用文档项目：[领域驱动设计](https://wcnn2j4xsnan.feishu.cn/wiki/H8iEwnymcir1B1kut1UcKDThnOg)
 - 标准项目参考: [java-spring-boot-ddd-example](https://github.com/Redlotus794/java-spring-boot-ddd-example)
 - 其他参考项目：Java 17版本 - [Arcus](https://github.com/Redlotus794/Arucs)
 
@@ -16,6 +16,19 @@
 
 本项目是基于Spring Boot + Java 8 + Maven 的开发标准框架，用于快速开发Spring Boot项目。     
 项目基于GNU General Public License v3.0（GPL-3.0）协议。  
+
+
+## 🔯 快速开始
+1. 使用maven编译项目
+```shell
+cd enigma-parent
+# 自动使用 .mvn 目录中的配置
+mvn clean install
+
+# 或者使用 Maven Wrapper（推荐）
+./mvnw clean install
+
+```
 
 
 ## 🧩 技术栈使用
