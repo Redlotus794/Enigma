@@ -13,8 +13,13 @@ import java.io.Serializable;
  * <p>
  * 值对象, 用以记录实体的版本，实现乐观锁的功能
  * </p>
- * <img src="https://github.com/Redlotus794/Arucs/blob/main/docs/pic/entityversion.jpg?raw=true" alt="Entity Version Diagram" width="600" height="400"/>
- *
+ * <p>
+ * <h3>最佳实践</h3>
+ * <ul>
+ *  <li>每次需要新增/更新的时候，总是使用next()方法获取下一个版本号</li>
+ *  <li>在资源库的保存方法中，根据版本号来判断是否需要新增还是更新（减少一下select库的查询）</li>
+ * </p>
+ * </ul>
  * @author wangjialong
  * @since 2025/11/27 14:39
  */
