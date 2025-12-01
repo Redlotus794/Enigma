@@ -9,27 +9,34 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>enigma-ddd-core</artifactId>
-    <name>Enigma DDD Core</name>
-    <description>Enigma Domain Driven Design Core Project</description>
+    <artifactId>enigma-ddd-spring-boot-starter</artifactId>
+    <name>Enigma DDD Spring Boot Starter</name>
+    <description>Enigma DDD Spring Implementation</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.auto.service</groupId>
-            <artifactId>auto-service</artifactId>
+            <version>1.18.38</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.testing.compile</groupId>
-            <artifactId>compile-testing</artifactId>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-ddd-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -52,7 +59,6 @@
     </dependencyManagement>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -61,6 +67,10 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                        <arg>-Xlint:-processing</arg>
+                    </compilerArgs>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -68,13 +78,14 @@
                             <version>1.18.38</version>
                         </path>
                         <path>
-                            <groupId>com.google.auto.service</groupId>
-                            <artifactId>auto-service</artifactId>
-                            <version>1.0.1</version>
+                            <groupId>com.rdlts.enigma</groupId>
+                            <artifactId>enigma-ddd-core</artifactId>
+                            <version>${project.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>

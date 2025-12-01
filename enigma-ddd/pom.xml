@@ -29,6 +29,7 @@
     <modules>
         <module>enigma-ddd-core</module>
         <module>enigma-ddd-dependencies</module>
+        <module>enigma-ddd-spring-boot-starter</module>
     </modules>
 
     <build>
@@ -37,7 +38,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                        <arg>-Xlint:-processing</arg>
+                    </compilerArgs>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -46,7 +52,6 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-                <version>3.8.0</version>
             </plugin>
 
             <!-- 需要maven 3.2.5+ -->

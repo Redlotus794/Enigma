@@ -21,7 +21,7 @@
 ## 🔯 快速开始
 1. 使用maven编译项目
 ```shell
-cd enigma-parent
+cd enigma-ddd
 # 自动使用 .mvn 目录中的配置
 mvn clean install
 
@@ -29,7 +29,6 @@ mvn clean install
 ./mvnw clean install
 
 ```
-
 
 ## 🧩 技术栈使用
 
@@ -44,13 +43,23 @@ Enigma 提供技术栈列表
 
 ## 🚀 项目列表
 
+- enigma-ddd
+- enigma-dependencies
+- enigma-ddd-spring-boot-starter
 
 ## 🎹 项目规范
 
 - 覆盖率要求
+
+**插件**: maven-surefire-plugin, maven-failsafe-plugin, jacoco-maven-plugin
+
 ```text
 Class : 95% 以上
 Method: 95% 以上
 Line: 95% 以上
 Branch: 95% 以上
 ```
+
+- 代码质量
+
+**Alibaba Coding guidelines analyze**: IDE插件，阿里巴巴开源的代码质量检查工具。

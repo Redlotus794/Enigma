@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core.test;
+package com.rdlts.enigma.ddd.core.test.valueobject;
 
 import com.rdlts.enigma.ddd.core.ValueObject;
 import lombok.*;
@@ -16,7 +16,8 @@ import javax.annotation.Nonnull;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class TestId implements ValueObject {
+@ValueObject
+public class TestId {
 
     @Nonnull
     String id;
