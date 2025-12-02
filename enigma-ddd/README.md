@@ -63,3 +63,12 @@ Enigma DDD 是一个基于领域驱动设计（Domain Driven Design）理念构�
 待补充
 
 
+### 版本变更命令
+```shell
+mvn versions:set -DnewVersion=1.0.0-SNAPSHOT
+# 提交
+mvn versions:commit
+# 回退
+mvn versions:revert
+```
+

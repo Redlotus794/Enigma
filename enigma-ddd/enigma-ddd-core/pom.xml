@@ -33,7 +33,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <scope>test</scope>
         </dependency>
@@ -72,10 +72,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                        <arg>-Xlint:-processing</arg>
+                    </compilerArgs>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -89,6 +92,79 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <!-- 3. 验证阶段设置覆盖率阈值 -->
+                    <execution>
+                        <id>jacoco-check</id>
+                        <phase>verify</phase> <!-- 在验证阶段执行 -->
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 设置覆盖率阈值 -->
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element> <!-- 整体项目 -->
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter> <!-- 行覆盖率 -->
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>95%</minimum> <!-- 最低 -->
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter> <!-- 分支覆盖率 -->
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>95%</minimum> <!-- 最低 -->
+                                        </limit>
+                                        <limit>
+                                            <counter>METHOD</counter> <!-- 方法覆盖率 -->
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>95%</minimum> <!-- 最低 90% -->
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
