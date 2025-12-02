@@ -19,6 +19,10 @@ public class TestDomainEntityRepository implements DomainRepository<TestDomainEn
 
     protected ConcurrentHashMap<TestId, TestDomainEntity> testDomainEntityMap = new ConcurrentHashMap<>();
 
+    public TestDomainEntityRepository() {
+
+    }
+
     @Override
     public Optional<TestDomainEntity> find(TestId testId) {
         return Optional.ofNullable(testDomainEntityMap.get(testId));

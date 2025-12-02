@@ -1,5 +1,8 @@
 package com.rdlts.enigma.ddd.core;
 
+import com.rdlts.enigma.ddd.core.exception.DomainEntityNotFoundException;
+
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -27,10 +30,20 @@ public interface DomainRepository<DE extends DomainEntity<IdentityType>, Identit
 
     /**
      * 根据实体主键 查找一个实体
-     * @param identityType IdentityType
-     * @return DE
+     * @param identity IdentityType
+     * @return Optional Domain Entity
      */
-    Optional<DE> find(IdentityType identityType);
+    Optional<DE> find(IdentityType identity);
+
+    /**
+     * 根据实体主键 查找一个实体，找不到则抛异常
+     * @param identity IdentityType
+     * @return Domain Entity
+     */
+    @Nonnull
+    default DE findRequired(IdentityType identity) throws DomainEntityNotFoundException {
+        return this.find(identity).orElseThrow(() -> new DomainEntityNotFoundException(identity));
+    }
 
     /**
      * 查找所有仓库实体

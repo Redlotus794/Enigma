@@ -1,5 +1,6 @@
 package com.rdlts.enigma.ddd.core;
 
+import com.rdlts.enigma.ddd.core.exception.DomainEntityNotFoundException;
 import com.rdlts.enigma.ddd.core.test.entity.TestDomainEntity;
 import com.rdlts.enigma.ddd.core.test.repository.TestDomainEntityRepository;
 import com.rdlts.enigma.ddd.core.test.valueobject.TestId;
@@ -20,11 +21,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class DomainRepositoryTest {
 
-    private TestDomainEntityRepository repository;
-    private TestDomainEntity testEntity1;
-    private TestDomainEntity testEntity2;
-    private TestId testId1;
-    private TestId testId2;
+    TestDomainEntityRepository repository;
+    TestDomainEntity testEntity1;
+    TestDomainEntity testEntity2;
+    TestId testId1;
+    TestId testId2;
 
     @BeforeEach
     public void setUp() {
@@ -134,5 +135,14 @@ public class DomainRepositoryTest {
         // Then
         Collection<TestDomainEntity> result = repository.findAll();
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testFindRequired() {
+        assertThrows(DomainEntityNotFoundException.class, () -> repository.findRequired(testId1));
+
+        repository.save(testEntity1);
+        TestDomainEntity entity = repository.findRequired(testId1);
+        assertEquals(testEntity1, entity);
     }
 }
