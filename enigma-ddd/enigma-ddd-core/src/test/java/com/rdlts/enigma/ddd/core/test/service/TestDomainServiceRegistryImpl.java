@@ -3,6 +3,7 @@ package com.rdlts.enigma.ddd.core.test.service;
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,11 @@ public class TestDomainServiceRegistryImpl implements DomainServiceRegistry {
     }
 
     @Override
+    @Nonnull
     public <T extends DomainService> T findService(Class<T> clazz) {
+        if (!SERVICES.containsKey(clazz)) {
+            throw new RuntimeException("未找到服务: " + clazz.getName());
+        }
         return (T) SERVICES.get(clazz);
     }
 }

@@ -1,5 +1,7 @@
 package com.rdlts.enigma.ddd.core;
 
+import javax.annotation.Nonnull;
+
 /**
  * DomainServiceRegistry 是一个标记接口，用于在 DDD（领域驱动设计）核心模块中注册和发现领域服务。
  * 实现该接口的类可以用于管理领域服务的生命周期和查找，促进服务的解耦。
@@ -33,6 +35,8 @@ public interface DomainServiceRegistry {
      *
      * @param clazz Class
      * @return DomainService
+     * @exception RuntimeException 如果未找到服务应该报错
      */
+    @Nonnull
     <T extends DomainService> T findService(Class<T> clazz);
 }

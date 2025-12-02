@@ -1,6 +1,8 @@
 package com.rdlts.enigma.ddd.core;
 
+import com.rdlts.enigma.ddd.core.test.service.NotExistsDomainService;
 import com.rdlts.enigma.ddd.core.test.service.TestDomainService;
+import com.rdlts.enigma.ddd.core.test.service.TestDomainServiceRegistryImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,4 +22,14 @@ public class DomainServiceTest {
                         .findService(TestDomainService.class)
                         .doSomething());
     }
+
+    @Test
+    void testServiceNotFound() {
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> DomainServiceRegistry
+                        .instance()
+                        .findService(NotExistsDomainService.class));
+    }
+
 }
