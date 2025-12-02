@@ -43,11 +43,18 @@ Enigma 提供技术栈列表
 
 ## 🚀 项目列表
 
-- enigma-ddd
-- enigma-dependencies
-- enigma-ddd-spring-boot-starter
+- enigma-ddd: 领域驱动设计项目
+    - enigma-ddd-core: 领域驱动设计核心模块
+    - enigma-ddd-dependencies: 领域驱动设计依赖管理
+    - enigma-ddd-spring-boot-starter: 领域驱动设计Spring实现
 
 ## 🎹 项目规范
+
+- 文档
+
+**文档结构参考项目**: [java-spring-boot-ddd-example](https://github.com/Redlotus794/java-spring-boot-ddd-example)
+
+**项目文档目录**: docs/
 
 - 覆盖率要求
 
