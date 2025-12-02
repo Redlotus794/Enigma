@@ -1,1 +1,1 @@
-com.rdlts.enigma.ddd.core.test.TestDomainServiceRegistryImpl
+com.rdlts.enigma.ddd.core.test.service.TestDomainServiceRegistryImpl

@@ -16,6 +16,7 @@ import java.util.Optional;
  * @author wangjialong
  * @since 2025/12/1 15:51
  */
+@SuppressWarnings("unused")
 public interface DomainRepository<DE extends DomainEntity<IdentityType>, IdentityType> {
 
     /**
@@ -42,7 +43,8 @@ public interface DomainRepository<DE extends DomainEntity<IdentityType>, Identit
      */
     @Nonnull
     default DE findRequired(IdentityType identity) throws DomainEntityNotFoundException {
-        return this.find(identity).orElseThrow(() -> new DomainEntityNotFoundException(identity));
+        return find(identity)
+                .orElseThrow(() -> new DomainEntityNotFoundException(identity));
     }
 
     /**

@@ -1,8 +1,7 @@
-package com.rdlts.enigma.ddd.core.test;
+package com.rdlts.enigma.ddd.core.test.service;
 
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
-import com.rdlts.enigma.ddd.core.test.service.TestDomainService;
 
 import java.util.HashMap;
 import java.util.Map;
