@@ -32,6 +32,17 @@
         <module>enigma-ddd-spring-boot-starter</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://nexus.smil.com:10022/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://nexus.smil.com:10022/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
@@ -52,6 +63,16 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.0</version>
             </plugin>
 
             <!-- 需要maven 3.2.5+ -->
