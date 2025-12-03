@@ -20,6 +20,6 @@ public interface DomainEventReproducer {
      * @return T 事件
      */
     default <T extends DomainEventReproducible> T replay(File file, Charset charset) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("DomainEventReproducer replay method is not implemented.");
     }
 }

@@ -12,6 +12,6 @@ public interface DomainEventReproducible {
      * 事件源重放
      */
     default void replay() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Domain event replay is not supported.");
     }
 }

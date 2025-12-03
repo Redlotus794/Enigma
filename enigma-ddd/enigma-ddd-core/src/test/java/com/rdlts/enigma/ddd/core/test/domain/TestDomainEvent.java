@@ -19,4 +19,6 @@ public class TestDomainEvent extends DomainEvent<TestDomainEntity> {
     public TestDomainEvent(@Nonnull TestDomainEntity eventContent) {
         super(eventContent);
     }
+
+
 }
