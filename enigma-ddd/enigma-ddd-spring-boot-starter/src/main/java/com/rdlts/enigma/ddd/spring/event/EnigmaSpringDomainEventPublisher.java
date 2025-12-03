@@ -6,6 +6,7 @@ import com.rdlts.enigma.ddd.core.DomainEventPublisher;
 import com.rdlts.enigma.ddd.core.DomainEventRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeansException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEventPublisher;
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
  */
 @Log4j2
 @Component
+@ConditionalOnMissingBean(DomainEventPublisher.class)
 public class EnigmaSpringDomainEventPublisher implements DomainEventPublisher, ApplicationContextAware {
 
     /**

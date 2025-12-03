@@ -56,6 +56,23 @@ enigma:
     enabled: true # 默认为true，
 ```
 
+- 自定义DDD组件
+
+通过覆盖META-INF/services，实现自定义功能：
+```text
+com.rdlts.enigma.ddd.core.DomainEventPublisher
+领域事件发布: EnigmaDomainEventPublisher，默认基于Spring Event的发布机制实现
+
+com.rdlts.enigma.ddd.core.DomainServiceRegistry
+领域服务注册: EnigmaDomainServiceRegistry，默认基于Spring ApplicationContext实现
+```
+
+可以通过实现对应的接口组件，来覆盖默认的组件行为
+```text
+com.rdlts.enigma.ddd.core.DomainEventRepository
+领域事件资源库持久化: EnigmaDomainEventRepository，默认只记录在日志中
+```
+
 - 创建领域模型：领域实体，值对象，聚合，领域事件，领域服务等
 ```java
 /**

@@ -3,6 +3,7 @@ package com.rdlts.enigma.ddd.spring.service;
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
 import org.springframework.beans.BeansException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,7 @@ import java.util.Objects;
  * @since 2025/12/2 14:41
  */
 @Component
+@ConditionalOnMissingBean(DomainServiceRegistry.class)
 public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, ApplicationContextAware {
 
     /**
@@ -43,6 +45,9 @@ public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, Appli
      */
     private ApplicationContext applicationContext;
 
+    /**
+     * 默认构造器
+     */
     public EnigmaDomainServiceRegistry() {
 
     }
