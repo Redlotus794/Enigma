@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
  * @author wangjialong
  * @since 2025/11/27 14:31
  */
-public interface DomainEntity<PKType> extends DomainAggregateRoot {
+public interface DomainEntity<PKType> extends DomainAggregateRoot, DomainEventParam {
 
     /**
      * 实体唯一主键
