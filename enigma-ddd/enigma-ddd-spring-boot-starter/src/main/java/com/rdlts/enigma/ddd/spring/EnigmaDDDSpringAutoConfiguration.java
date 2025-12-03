@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.spring.config;
+package com.rdlts.enigma.ddd.spring;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,7 @@
 package com.rdlts.enigma.ddd.spring.service;
 
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
+import com.rdlts.enigma.ddd.spring.EnigmaDomainServiceRegistry;
 import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.spring.test.service.EnigmaTestDomainService;
 import org.junit.jupiter.api.Assertions;
