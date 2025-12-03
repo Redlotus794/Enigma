@@ -13,4 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "com.rdlts.enigma.ddd.spring")
 public class EnigmaDDDSpringAutoConfiguration {
 
+    public EnigmaDDDSpringAutoConfiguration() {
+    }
 }

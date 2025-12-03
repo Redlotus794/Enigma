@@ -16,7 +16,7 @@ import lombok.*;
 @Builder(toBuilder = true)
 @ToString
 @SuppressWarnings("all")
-public class TestVO {
+public class TestValueObject {
 
     private String val;
 

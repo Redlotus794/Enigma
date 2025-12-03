@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.spring.utils;
 
 import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
-import com.rdlts.enigma.ddd.spring.test.domain.TestVO;
+import com.rdlts.enigma.ddd.spring.test.domain.TestValueObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 
@@ -47,7 +47,7 @@ class EnigmaSpringContextUtilsTest extends EnigmaSpringBootBasedTest {
         
         // 加载一个Bean
         String beanName = "testVO";
-        utils.loadBean(beanName, TestVO.class);
+        utils.loadBean(beanName, TestValueObject.class);
         
         // 卸载Bean
         utils.unloadBean(beanName);
