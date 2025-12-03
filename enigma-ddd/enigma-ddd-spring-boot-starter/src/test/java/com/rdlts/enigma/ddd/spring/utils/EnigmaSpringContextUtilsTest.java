@@ -1,7 +1,6 @@
 package com.rdlts.enigma.ddd.spring.utils;
 
 import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
-import com.rdlts.enigma.ddd.spring.EnigmaSpringContextUtils;
 import com.rdlts.enigma.ddd.spring.test.domain.TestValueObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;

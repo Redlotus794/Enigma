@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.spring;
+package com.rdlts.enigma.ddd.spring.service;
 
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;

@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "enigma.spring.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable Enigma Spring Auto Configuration"
+    }
+  ]
+}

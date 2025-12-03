@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.spring;
+package com.rdlts.enigma.ddd.spring.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;

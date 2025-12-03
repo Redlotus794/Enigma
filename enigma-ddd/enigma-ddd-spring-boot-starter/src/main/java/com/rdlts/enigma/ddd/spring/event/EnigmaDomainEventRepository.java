@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.spring;
+package com.rdlts.enigma.ddd.spring.event;
 
 import com.rdlts.enigma.ddd.core.DomainEvent;
 import com.rdlts.enigma.ddd.core.DomainEventRepository;

@@ -1,5 +1,6 @@
 package com.rdlts.enigma.ddd.spring;
 
+import com.rdlts.enigma.ddd.spring.test.EnigmaDDDSpringTestApplication;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

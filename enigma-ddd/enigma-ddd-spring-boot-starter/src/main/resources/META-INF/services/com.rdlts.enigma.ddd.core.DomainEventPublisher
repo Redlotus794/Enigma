@@ -1,1 +1,1 @@
-com.rdlts.enigma.ddd.spring.EnigmaSpringDomainEventPublisher
+com.rdlts.enigma.ddd.spring.event.EnigmaSpringDomainEventPublisher

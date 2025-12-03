@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.spring;
+package com.rdlts.enigma.ddd.spring.event;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
