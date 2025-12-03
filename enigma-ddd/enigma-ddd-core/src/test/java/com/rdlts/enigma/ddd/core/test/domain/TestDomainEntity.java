@@ -1,9 +1,8 @@
-package com.rdlts.enigma.ddd.core.test.entity;
+package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainEntity;
 import com.rdlts.enigma.ddd.core.DomainEventParam;
 import com.rdlts.enigma.ddd.core.EntityVersion;
-import com.rdlts.enigma.ddd.core.test.valueobject.TestId;
 import lombok.*;
 
 import javax.annotation.Nonnull;

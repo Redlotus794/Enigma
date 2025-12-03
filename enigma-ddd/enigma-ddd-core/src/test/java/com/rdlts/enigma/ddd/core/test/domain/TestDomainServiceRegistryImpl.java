@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core.test.service;
+package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;

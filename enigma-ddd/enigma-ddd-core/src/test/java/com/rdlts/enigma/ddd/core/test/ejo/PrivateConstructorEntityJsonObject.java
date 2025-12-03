@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.core.test.ejo;
 
 import com.rdlts.enigma.ddd.core.EntityJsonObject;
-import com.rdlts.enigma.ddd.core.test.entity.TestDomainEntity;
+import com.rdlts.enigma.ddd.core.test.domain.TestDomainEntity;
 
 import javax.annotation.Nullable;
 

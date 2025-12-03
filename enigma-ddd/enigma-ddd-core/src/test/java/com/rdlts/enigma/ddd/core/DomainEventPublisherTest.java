@@ -12,31 +12,22 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.ServiceLoader;
 
-/**
- * DomainServiceRegistryTest
- *
- * @see DomainServiceRegistry
- * @see DomainServiceRegistryHolder
- * @author wangjialong
- * @since 2025/12/2 09:27
- */
-public class DomainServiceRegistryTest {
+class DomainEventPublisherTest {
 
     @Test
     void testInstance() {
-        final DomainServiceRegistry instance = DomainServiceRegistry.instance();
+        final DomainEventPublisher instance = DomainEventPublisher.instance();
         Assertions.assertNotNull(instance);
     }
 
-
     @Test
-    void test_noDomainService_load_shouldThrowException() throws Exception {
+    void test_NoPublisherImpl_load_shouldThrowException() throws Exception {
         // 保证初始化成功
-        Assertions.assertNotNull(DomainServiceRegistryHolder.INSTANCE);
+        Assertions.assertNotNull(DomainEventPublisherHolder.INSTANCE);
         // 读取services文件，置空，测试load方法
         Collection<FileBackup> fileBackups = new ArrayList<>();
         try {
-            final Enumeration<URL> systemResources = ClassLoader.getSystemResources("META-INF/services/com.rdlts.enigma.ddd.core.DomainServiceRegistry");
+            final Enumeration<URL> systemResources = ClassLoader.getSystemResources("META-INF/services/com.rdlts.enigma.ddd.core.DomainEventPublisher");
             while (systemResources.hasMoreElements()) {
                 final File file = new File(systemResources.nextElement().toURI());
                 final FileBackup fileBackup = new FileBackup(file, FileUtils.readFileToString(file));
@@ -44,17 +35,15 @@ public class DomainServiceRegistryTest {
                 fileBackups.add(fileBackup);
             }
 
-            final ServiceLoader<DomainServiceRegistry> load = ServiceLoader.load(DomainServiceRegistry.class);
-            Collection<DomainServiceRegistry> registries = new ArrayList<>();
-            for (DomainServiceRegistry registry : load) {
+            final ServiceLoader<DomainEventPublisher> load = ServiceLoader.load(DomainEventPublisher.class);
+            Collection<DomainEventPublisher> registries = new ArrayList<>();
+            for (DomainEventPublisher registry : load) {
                 registries.add(registry);
             }
             Assertions.assertEquals(0, registries.size());
-            Assertions.assertThrows(IllegalStateException.class, DomainServiceRegistryHolder::load);
+            Assertions.assertThrows(IllegalStateException.class, DomainEventPublisherHolder::load);
         } finally {
             fileBackups.forEach(FileBackup::restore);
         }
     }
-
-
 }

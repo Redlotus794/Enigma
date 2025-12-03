@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core.test.valueobject;
+package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.ValueObject;
 import lombok.*;

@@ -1,8 +1,7 @@
 package com.rdlts.enigma.ddd.core;
 
-import com.rdlts.enigma.ddd.core.test.service.NotExistsDomainService;
-import com.rdlts.enigma.ddd.core.test.service.TestDomainService;
-import com.rdlts.enigma.ddd.core.test.service.TestDomainServiceRegistryImpl;
+import com.rdlts.enigma.ddd.core.test.domain.NotExistsDomainService;
+import com.rdlts.enigma.ddd.core.test.domain.TestDomainService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

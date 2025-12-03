@@ -10,6 +10,7 @@
 
 Enigma DDD 是一个基于领域驱动设计（Domain Driven Design）理念构建的框架或项目模板，旨在帮助开发团队更好地实现复杂业务系统的建模与开发。
 
+
 ### 快速开始
 
 - 引入依赖：将 Enigma DDD 相关依赖添加到项目的构建配置文件中（如 Maven 的 `pom.xml` 或 Gradle 的 `build.gradle`）。
@@ -46,6 +47,63 @@ Enigma DDD 是一个基于领域驱动设计（Domain Driven Design）理念构�
         </annotationProcessorPaths>
     </configuration>
 </plugin>
+```
+
+- 创建领域模型：领域实体，值对象，聚合，领域事件，领域服务等
+```java
+/**
+ * TestDomainEntity
+ *
+ * @author wangjialong
+ * @since 2025/11/27 14:59
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@Builder
+public class TestDomainEntity implements DomainEntity<TestId>, DomainEventParam {
+
+    @Nonnull
+    TestId testId;
+
+    @Nonnull
+    @Builder.Default
+    EntityVersion entityVersion = EntityVersion.ZERO_VERSION;
+
+    @Nonnull
+    @Override
+    public TestId identity() {
+        return testId;
+    }
+
+    @Nonnull
+    @Override
+    public EntityVersion version() {
+        return entityVersion;
+    }
+}
+
+```
+
+- 使用DomainEvent解耦领域逻辑，实现限界上下文之间的通信
+```java
+/**
+ * TestDomainEvent
+ *
+ * @author wangjialong
+ * @since 2025/12/2 16:09
+ */
+public class TestDomainEvent extends DomainEvent<TestDomainEntity> {
+
+    public TestDomainEvent() {
+        super();
+    }
+
+    public TestDomainEvent(@Nonnull TestDomainEntity eventContent) {
+        super(eventContent);
+    }
+}
 ```
 
 

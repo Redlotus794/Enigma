@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.core;
 
-import com.rdlts.enigma.ddd.core.test.entity.TestDomainEntity;
-import com.rdlts.enigma.ddd.core.test.valueobject.TestId;
+import com.rdlts.enigma.ddd.core.test.domain.TestDomainEntity;
+import com.rdlts.enigma.ddd.core.test.domain.TestId;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -2,8 +2,8 @@ package com.rdlts.enigma.ddd.core.test.ejo;
 
 import com.rdlts.enigma.ddd.core.EntityJsonObject;
 import com.rdlts.enigma.ddd.core.EntityVersion;
-import com.rdlts.enigma.ddd.core.test.entity.TestDomainEntity;
-import com.rdlts.enigma.ddd.core.test.valueobject.TestId;
+import com.rdlts.enigma.ddd.core.test.domain.TestDomainEntity;
+import com.rdlts.enigma.ddd.core.test.domain.TestId;
 import lombok.*;
 
 /**

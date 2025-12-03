@@ -16,7 +16,6 @@ public abstract class DomainEvent<T extends DomainEventParam> {
      *
      * @see DomainEventUUID
      */
-    @Nonnull
     protected DomainEventUUID eventUuid;
 
     /**
@@ -24,9 +23,11 @@ public abstract class DomainEvent<T extends DomainEventParam> {
      *
      * @see DomainEventParam
      */
-    @Nonnull
     protected T eventContent;
 
+    /**
+     * 构造器
+     */
     protected DomainEvent() {
     }
 
@@ -42,5 +43,4 @@ public abstract class DomainEvent<T extends DomainEventParam> {
     public String domainEventName() {
         return this.getClass().getName();
     }
-
 }

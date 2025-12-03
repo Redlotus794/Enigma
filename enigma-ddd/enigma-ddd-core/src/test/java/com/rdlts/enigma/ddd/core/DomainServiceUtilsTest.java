@@ -1,9 +1,9 @@
 package com.rdlts.enigma.ddd.core;
 
 import com.rdlts.enigma.ddd.core.exception.DomainEntityNotFoundException;
-import com.rdlts.enigma.ddd.core.test.entity.TestDomainEntity;
-import com.rdlts.enigma.ddd.core.test.service.TestDomainService;
-import com.rdlts.enigma.ddd.core.test.valueobject.TestId;
+import com.rdlts.enigma.ddd.core.test.domain.TestDomainEntity;
+import com.rdlts.enigma.ddd.core.test.domain.TestDomainService;
+import com.rdlts.enigma.ddd.core.test.domain.TestId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

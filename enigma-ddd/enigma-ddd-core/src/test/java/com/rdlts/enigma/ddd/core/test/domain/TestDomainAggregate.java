@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core.test.entity;
+package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainAggregate;
 import lombok.*;

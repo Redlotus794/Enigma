@@ -1,11 +1,8 @@
-package com.rdlts.enigma.ddd.core.test.service;
+package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainRepository;
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceUtils;
-import com.rdlts.enigma.ddd.core.test.entity.TestDomainEntity;
-import com.rdlts.enigma.ddd.core.test.repository.TestDomainEntityRepository;
-import com.rdlts.enigma.ddd.core.test.valueobject.TestId;
 
 import javax.annotation.Nonnull;
 
