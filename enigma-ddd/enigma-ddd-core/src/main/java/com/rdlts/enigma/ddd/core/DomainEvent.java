@@ -9,7 +9,8 @@ import javax.annotation.Nonnull;
  * @author wangjialong
  * @since 2025/12/2 15:41
  */
-public abstract class DomainEvent<T extends DomainEventParam> {
+public abstract class DomainEvent<T extends DomainEventParam>
+        implements DomainEventReproducible, DomainEventPersistable {
 
     /**
      * 事件唯一标识
