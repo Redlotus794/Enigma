@@ -1,6 +1,6 @@
 package com.rdlts.enigma.ddd.core;
 
-import lombok.Getter;
+import lombok.Data;
 
 import javax.annotation.Nonnull;
 
@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
  * @author wangjialong
  * @since 2025/12/2 15:41
  */
-@Getter
+@Data
 public abstract class DomainEvent<T extends DomainEventParam>
         implements DomainEventReproducible, DomainEventPersistable {
 

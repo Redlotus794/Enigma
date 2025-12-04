@@ -1,6 +1,7 @@
 package com.rdlts.enigma.ddd.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
@@ -19,7 +20,7 @@ public interface DomainEventReproducer {
      * @param charset Charset 文件编码方式
      * @return T 事件
      */
-    default <T extends DomainEventReproducible> T replay(File file, Charset charset) {
-        throw new UnsupportedOperationException("DomainEventReproducer replay method is not implemented.");
+    default <T extends DomainEventReproducible> T rebuild(File file, Charset charset) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("DomainEventReproducer rebuild method is not implemented.");
     }
 }

@@ -47,9 +47,9 @@ public class DomainEventTest {
     }
 
     @Test
-    void testReplay_throwUnsupportedException() {
+    void testRebuild_throwUnsupportedException() {
         final DomainEventReproducer DefaultReproducer = new DefaultReproducer();
-        Assertions.assertThrows(UnsupportedOperationException.class, () -> DefaultReproducer.replay(null, null));
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> DefaultReproducer.rebuild(null, null));
     }
 
     static class DefaultReproducer implements DomainEventReproducer {
