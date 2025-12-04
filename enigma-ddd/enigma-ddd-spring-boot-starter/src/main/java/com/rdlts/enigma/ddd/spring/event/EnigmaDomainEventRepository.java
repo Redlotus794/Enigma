@@ -4,8 +4,6 @@ import com.rdlts.enigma.ddd.core.DomainEvent;
 import com.rdlts.enigma.ddd.core.DomainEventRepository;
 import com.rdlts.enigma.ddd.core.DomainEventUUID;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -15,9 +13,7 @@ import java.util.Optional;
  * @author wangjialong
  * @since 2025/12/3 14:06
  */
-@Component
 @Log4j2
-@ConditionalOnMissingBean(DomainEventRepository.class)
 public class EnigmaDomainEventRepository implements DomainEventRepository {
 
     @Override

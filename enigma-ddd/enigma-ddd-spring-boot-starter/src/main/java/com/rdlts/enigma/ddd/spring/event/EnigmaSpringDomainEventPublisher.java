@@ -4,16 +4,10 @@ import com.rdlts.enigma.ddd.core.DomainEvent;
 import com.rdlts.enigma.ddd.core.DomainEventParam;
 import com.rdlts.enigma.ddd.core.DomainEventPublisher;
 import com.rdlts.enigma.ddd.core.DomainEventRepository;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.BeansException;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Resource;
 
 /**
  * EnigmaSpringDomainEventPublisher
@@ -22,14 +16,13 @@ import javax.annotation.Resource;
  * @since 2025/12/3 11:11
  */
 @Log4j2
-@Component
-@ConditionalOnMissingBean(DomainEventPublisher.class)
-public class EnigmaSpringDomainEventPublisher implements DomainEventPublisher, ApplicationContextAware {
+@NoArgsConstructor
+public class EnigmaSpringDomainEventPublisher implements DomainEventPublisher, InitializingBean {
 
     /**
      * 实例
      */
-    public static EnigmaSpringDomainEventPublisher SINGLETON_INSTANCE;
+    protected static DomainEventPublisher SINGLETON_INSTANCE;
 
     /**
      * 领域事件发布激活开关，基于线程级别。默认为true
@@ -39,14 +32,20 @@ public class EnigmaSpringDomainEventPublisher implements DomainEventPublisher, A
     /**
      * Spring Event事件发布
      */
-    @Resource
     ApplicationEventPublisher applicationEventPublisher;
 
     /**
      * 领域事件仓库
      */
-    @Resource
     DomainEventRepository domainEventRepository;
+
+
+    public EnigmaSpringDomainEventPublisher(
+            ApplicationEventPublisher applicationEventPublisher,
+            DomainEventRepository domainEventRepository) {
+        this.applicationEventPublisher = applicationEventPublisher;
+        this.domainEventRepository = domainEventRepository;
+    }
 
     /**
      * 实例获取
@@ -97,7 +96,7 @@ public class EnigmaSpringDomainEventPublisher implements DomainEventPublisher, A
     }
 
     @Override
-    public void setApplicationContext(@Nonnull ApplicationContext applicationContext) throws BeansException {
-        SINGLETON_INSTANCE = applicationContext.getBean(EnigmaSpringDomainEventPublisher.class);
+    public void afterPropertiesSet() throws Exception {
+        EnigmaSpringDomainEventPublisher.SINGLETON_INSTANCE = this;
     }
 }

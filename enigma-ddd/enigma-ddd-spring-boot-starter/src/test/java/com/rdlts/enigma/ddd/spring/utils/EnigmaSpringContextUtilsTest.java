@@ -48,7 +48,10 @@ class EnigmaSpringContextUtilsTest extends EnigmaSpringBootBasedTest {
         // 加载一个Bean
         String beanName = "testVO";
         utils.loadBean(beanName, TestValueObject.class);
-        
+
+        TestValueObject t = (TestValueObject) EnigmaSpringContextUtils.instance().applicationContext().getBean("testVO");
+        assertNotNull(t);
+
         // 卸载Bean
         utils.unloadBean(beanName);
     }

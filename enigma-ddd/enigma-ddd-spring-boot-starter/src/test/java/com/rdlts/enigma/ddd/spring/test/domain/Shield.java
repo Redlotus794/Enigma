@@ -26,6 +26,11 @@ public class Shield implements DomainEntity<ShieldId> {
     @Builder.Default
     EntityVersion entityVersion = EntityVersion.ZERO_VERSION;
 
+    public Shield(@Nonnull ShieldId shieldId) {
+        this.shieldId = shieldId;
+        this.entityVersion = EntityVersion.ZERO_VERSION;
+    }
+
     @Nonnull
     @Override
     public ShieldId identity() {

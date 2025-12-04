@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnigmaSpringContextUtils implements ApplicationContextAware {
 
-    static EnigmaSpringContextUtils instance;
+    private static EnigmaSpringContextUtils instance;
 
-    ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     public static EnigmaSpringContextUtils instance() {
         return instance;
@@ -38,7 +38,6 @@ public class EnigmaSpringContextUtils implements ApplicationContextAware {
         ConfigurableApplicationContext context = (ConfigurableApplicationContext) this.applicationContext;
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) context.getBeanFactory();
         final BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(clazz);
-        beanDefinitionBuilder.addPropertyValue("name", name);
         beanFactory.registerBeanDefinition(name, beanDefinitionBuilder.getRawBeanDefinition());
     }
 

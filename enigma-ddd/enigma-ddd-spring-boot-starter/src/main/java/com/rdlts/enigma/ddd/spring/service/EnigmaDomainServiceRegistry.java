@@ -3,10 +3,8 @@ package com.rdlts.enigma.ddd.spring.service;
 import com.rdlts.enigma.ddd.core.DomainService;
 import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
 import org.springframework.beans.BeansException;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -31,14 +29,12 @@ import java.util.Objects;
  * @author wangjialong
  * @since 2025/12/2 14:41
  */
-@Component
-@ConditionalOnMissingBean(DomainServiceRegistry.class)
-public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, ApplicationContextAware {
+public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, InitializingBean {
 
     /**
      * Spring注入实例. 单例
      */
-    private static EnigmaDomainServiceRegistry INSTANCE;
+    protected static DomainServiceRegistry SINGLETON_INSTANCE;
 
     /**
      * Spring的上下文
@@ -49,7 +45,10 @@ public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, Appli
      * 默认构造器
      */
     public EnigmaDomainServiceRegistry() {
+    }
 
+    public EnigmaDomainServiceRegistry(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     /**
@@ -60,7 +59,7 @@ public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, Appli
     @Override
     public DomainServiceRegistry getInstance() {
         // Spring的注入优先于Service loader的发现。
-        return EnigmaDomainServiceRegistry.INSTANCE;
+        return EnigmaDomainServiceRegistry.SINGLETON_INSTANCE;
     }
 
     /**
@@ -78,8 +77,7 @@ public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, Appli
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-        EnigmaDomainServiceRegistry.INSTANCE = applicationContext.getBean(EnigmaDomainServiceRegistry.class);
+    public void afterPropertiesSet() throws Exception {
+        EnigmaDomainServiceRegistry.SINGLETON_INSTANCE = this;
     }
 }
