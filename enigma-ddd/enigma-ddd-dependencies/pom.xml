@@ -30,6 +30,13 @@
                 <version>2.0.52</version>
             </dependency>
 
+            <!-- spring boot 支持的版本 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.7</version>
+            </dependency>
+
             <!-- com google -->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
@@ -70,6 +77,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-json</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
