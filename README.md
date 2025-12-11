@@ -39,14 +39,27 @@ Enigma 提供技术栈列表
 | Maven        | 3.5+ (Java 8) | Apache 官网 |
 | Java         | 8             | JVM       |
 | JaCoCo       | 0.8.7         | 单元测试框架    |
+| Maven Surefire | 3.0.0-M7      | 单元测试框架    |
 
 
 ## 🚀 项目列表
+- enigma-bom:
+ 
+  maven 包管理项目：[README.md](enigma-bom/README.md)
+
+- enigma-common
+
+  基础类通用项目: [README.md](enigma-common/README.md)
 
 - enigma-ddd: 领域驱动设计项目
     - enigma-ddd-core: 领域驱动设计核心模块
     - enigma-ddd-dependencies: 领域驱动设计依赖管理
     - enigma-ddd-spring-boot-starter: 领域驱动设计Spring实现
+- enigma-parent: Enigma父项目
+- enigma-random-spring-boot-starter: 随机对象构建的Spring boot项目
+- enigma-test-spring-boot-starter: 测试框架Spring Boot项目
+- enigma-tools-spring-boot-starter: 工具类项目
+- enigma-tpc-spring-boot-starter: TPC Spring Boot项目
 
 ## 🎹 项目规范
 
