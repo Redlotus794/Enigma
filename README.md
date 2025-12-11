@@ -43,23 +43,17 @@ Enigma 提供技术栈列表
 
 
 ## 🚀 项目列表
-- enigma-bom:
- 
-  maven 包管理项目：[README.md](enigma-bom/README.md)
-
-- enigma-common
-
-  基础类通用项目: [README.md](enigma-common/README.md)
-
-- enigma-ddd: 领域驱动设计项目
+- [enigma-bom](enigma-bom/README.md): maven 包管理项目
+- [enigma-common](enigma-common/README.md): 基础类通用项目
+- [enigma-ddd](enigma-ddd/README.md): 领域驱动设计项目
     - enigma-ddd-core: 领域驱动设计核心模块
     - enigma-ddd-dependencies: 领域驱动设计依赖管理
     - enigma-ddd-spring-boot-starter: 领域驱动设计Spring实现
 - enigma-parent: Enigma父项目
-- enigma-random-spring-boot-starter: 随机对象构建的Spring boot项目
-- enigma-test-spring-boot-starter: 测试框架Spring Boot项目
-- enigma-tools-spring-boot-starter: 工具类项目
-- enigma-tpc-spring-boot-starter: TPC Spring Boot项目
+- [enigma-random-spring-boot-starter](enigma-random-spring-boot-starter/README.md): 随机对象构建的Spring boot项目
+- [enigma-test-spring-boot-starter](enigma-test-spring-boot-starter/README.md): 测试框架Spring Boot项目
+- [enigma-tools-spring-boot-starter](enigma-tools-spring-boot-starter/README.md): 工具类项目
+- [enigma-tpc-spring-boot-starter](enigma-tpc-spring-boot-starter/README.md): TPC Spring Boot项目
 
 ## 🎹 项目规范
 
