@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.rdlts.enigma</groupId>
+        <artifactId>enigma-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../enigma-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>enigma-test-spring-boot-starter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Enigma Test</name>
+    <description>Enigma Test Project</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-ddd-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-common</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
