@@ -4,7 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rdlts.enigma</groupId>
+    <parent>
+        <groupId>com.rdlts.enigma</groupId>
+        <artifactId>enigma-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../enigma-parent/pom.xml</relativePath>
+    </parent>
+
     <artifactId>enigma-tpc-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>Enigma TPC Spring Boot Starter</name>
