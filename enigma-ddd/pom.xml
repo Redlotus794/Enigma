@@ -28,7 +28,6 @@
 
     <modules>
         <module>enigma-ddd-core</module>
-        <module>enigma-ddd-dependencies</module>
         <module>enigma-ddd-spring-boot-starter</module>
     </modules>
 

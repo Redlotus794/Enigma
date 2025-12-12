@@ -58,8 +58,8 @@
         <dependencies>
             <dependency>
                 <groupId>com.rdlts.enigma</groupId>
-                <artifactId>enigma-ddd-dependencies</artifactId>
-                <version>${project.version}</version>
+                <artifactId>enigma-bom</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

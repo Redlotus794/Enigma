@@ -47,7 +47,6 @@ Enigma 提供技术栈列表
 - [enigma-common](enigma-common/README.md): 基础类通用项目
 - [enigma-ddd](enigma-ddd/README.md): 领域驱动设计项目
     - enigma-ddd-core: 领域驱动设计核心模块
-    - enigma-ddd-dependencies: 领域驱动设计依赖管理
     - enigma-ddd-spring-boot-starter: 领域驱动设计Spring实现
 - enigma-parent: Enigma父项目
 - [enigma-random-spring-boot-starter](enigma-random-spring-boot-starter/README.md): 随机对象构建的Spring boot项目
