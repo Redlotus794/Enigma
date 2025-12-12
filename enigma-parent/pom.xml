@@ -170,4 +170,15 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://nexus.smil.com:10022/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://nexus.smil.com:10022/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
