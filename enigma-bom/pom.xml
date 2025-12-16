@@ -4,16 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rdlts.enigma</groupId>
+    <parent>
+        <groupId>com.rdlts.enigma</groupId>
+        <artifactId>enigma-parent</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+        <relativePath>../enigma-parent/pom.xml</relativePath>
+    </parent>
+
     <artifactId>enigma-bom</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Enigma BOM</name>
     <description>Enigma Bill Of Materials</description>
 
     <properties>
-        <enigma.ddd.version>1.1.0-SNAPSHOT</enigma.ddd.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,23 +32,38 @@
             <!-- enigma project -->
             <dependency>
                 <groupId>com.rdlts.enigma</groupId>
-                <artifactId>enigma-tools-spring-boot-starter</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rdlts.enigma</groupId>
                 <artifactId>enigma-common</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rdlts.enigma</groupId>
-                <artifactId>enigma-test-spring-boot-starter</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.rdlts.enigma</groupId>
                 <artifactId>enigma-ddd-core</artifactId>
-                <version>${enigma.ddd.version}</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rdlts.enigma</groupId>
+                <artifactId>enigma-ddd-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rdlts.enigma</groupId>
+                <artifactId>enigma-random-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rdlts.enigma</groupId>
+                <artifactId>enigma-test-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rdlts.enigma</groupId>
+                <artifactId>enigma-tools-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rdlts.enigma</groupId>
+                <artifactId>enigma-tpc-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- com alibaba -->
