@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.service;
 
 import com.rdlts.enigma.ddd.core.test.io.FileBackup;
 import org.apache.commons.io.FileUtils;
@@ -36,7 +36,7 @@ public class DomainServiceRegistryTest {
         // 读取services文件，置空，测试load方法
         Collection<FileBackup> fileBackups = new ArrayList<>();
         try {
-            final Enumeration<URL> systemResources = ClassLoader.getSystemResources("META-INF/services/com.rdlts.enigma.ddd.core.DomainServiceRegistry");
+            final Enumeration<URL> systemResources = ClassLoader.getSystemResources("META-INF/services/com.rdlts.enigma.ddd.core.service.DomainServiceRegistry");
             while (systemResources.hasMoreElements()) {
                 final File file = new File(systemResources.nextElement().toURI());
                 final FileBackup fileBackup = new FileBackup(file, FileUtils.readFileToString(file));

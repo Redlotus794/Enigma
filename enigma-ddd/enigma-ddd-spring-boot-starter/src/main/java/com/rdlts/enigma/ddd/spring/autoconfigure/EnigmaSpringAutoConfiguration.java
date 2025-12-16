@@ -1,8 +1,8 @@
 package com.rdlts.enigma.ddd.spring.autoconfigure;
 
-import com.rdlts.enigma.ddd.core.DomainEventPublisher;
-import com.rdlts.enigma.ddd.core.DomainEventRepository;
-import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
+import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
+import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
+import com.rdlts.enigma.ddd.core.service.DomainServiceRegistry;
 import com.rdlts.enigma.ddd.spring.event.EnigmaDomainEventRepository;
 import com.rdlts.enigma.ddd.spring.event.EnigmaSpringDomainEventPublisher;
 import com.rdlts.enigma.ddd.spring.service.EnigmaDomainServiceRegistry;

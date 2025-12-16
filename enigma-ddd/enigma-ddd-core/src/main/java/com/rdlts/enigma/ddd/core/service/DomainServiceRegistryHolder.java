@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.service;
 
 import java.util.ServiceLoader;
 import java.util.logging.Logger;

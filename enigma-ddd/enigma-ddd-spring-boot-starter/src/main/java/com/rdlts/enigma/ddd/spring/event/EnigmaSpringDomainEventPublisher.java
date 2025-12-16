@@ -1,9 +1,9 @@
 package com.rdlts.enigma.ddd.spring.event;
 
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventParam;
-import com.rdlts.enigma.ddd.core.DomainEventPublisher;
-import com.rdlts.enigma.ddd.core.DomainEventRepository;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
+import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
+import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.InitializingBean;

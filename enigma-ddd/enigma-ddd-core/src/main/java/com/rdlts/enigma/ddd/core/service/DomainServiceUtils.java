@@ -1,5 +1,7 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.service;
 
+import com.rdlts.enigma.ddd.core.DomainEntity;
+import com.rdlts.enigma.ddd.core.DomainRepository;
 import com.rdlts.enigma.ddd.core.exception.DomainEntityNotFoundException;
 
 import javax.annotation.Nonnull;
@@ -18,7 +20,7 @@ public interface DomainServiceUtils<PKType, T extends DomainEntity<PKType>> {
     /**
      * 查询实体，为空报异常
      * 
-     * @see DomainRepository#findRequired(Object) 
+     * @see DomainRepository#findRequired(Object)
      * @param pkType PKType
      * @return T
      * @exception DomainEntityNotFoundException 实体未找到异常

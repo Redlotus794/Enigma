@@ -1,8 +1,8 @@
 package com.rdlts.enigma.ddd.spring.event;
 
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventRepository;
-import com.rdlts.enigma.ddd.core.DomainEventUUID;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
+import com.rdlts.enigma.ddd.core.event.DomainEventUUID;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Optional;

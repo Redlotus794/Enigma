@@ -1,6 +1,6 @@
 package com.rdlts.enigma.ddd.spring.test.service;
 
-import com.rdlts.enigma.ddd.core.DomainService;
+import com.rdlts.enigma.ddd.core.service.DomainService;
 import org.springframework.stereotype.Component;
 
 /**

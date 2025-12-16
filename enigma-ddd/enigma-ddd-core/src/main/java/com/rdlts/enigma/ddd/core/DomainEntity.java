@@ -1,5 +1,7 @@
 package com.rdlts.enigma.ddd.core;
 
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
+
 import javax.annotation.Nonnull;
 
 /**

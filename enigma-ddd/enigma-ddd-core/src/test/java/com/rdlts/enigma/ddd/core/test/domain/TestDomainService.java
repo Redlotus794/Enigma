@@ -1,8 +1,8 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainRepository;
-import com.rdlts.enigma.ddd.core.DomainService;
-import com.rdlts.enigma.ddd.core.DomainServiceUtils;
+import com.rdlts.enigma.ddd.core.service.DomainService;
+import com.rdlts.enigma.ddd.core.service.DomainServiceUtils;
 
 import javax.annotation.Nonnull;
 

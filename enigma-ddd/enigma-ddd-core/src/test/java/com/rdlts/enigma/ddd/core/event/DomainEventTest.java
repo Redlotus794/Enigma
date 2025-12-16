@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.event;
 
 import com.rdlts.enigma.ddd.core.test.domain.*;
 import org.junit.jupiter.api.Assertions;

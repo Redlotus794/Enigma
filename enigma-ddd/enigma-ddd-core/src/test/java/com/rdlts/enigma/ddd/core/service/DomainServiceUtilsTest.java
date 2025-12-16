@@ -1,5 +1,6 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.service;
 
+import com.rdlts.enigma.ddd.core.DomainRepository;
 import com.rdlts.enigma.ddd.core.exception.DomainEntityNotFoundException;
 import com.rdlts.enigma.ddd.core.test.domain.TestDomainEntity;
 import com.rdlts.enigma.ddd.core.test.domain.TestDomainService;

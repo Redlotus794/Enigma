@@ -2,8 +2,8 @@ package com.rdlts.enigma.ddd.spring.event;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventParam;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
 import com.rdlts.enigma.ddd.spring.event.builder.DomainEventStoreJsonBuilderContext;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;

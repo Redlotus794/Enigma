@@ -1,8 +1,7 @@
 package com.rdlts.enigma.ddd.spring.test.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import net.bytebuddy.utility.RandomString;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.annotation.Nonnull;
@@ -28,7 +27,7 @@ public class ShieldSavedEvent extends DomainEvent<Shield> {
      */
     public static ShieldSavedEvent next() {
         return new ShieldSavedEvent(
-                Shield.builder().shieldId(new ShieldId(RandomStringUtils.random(6))).build()
+                Shield.builder().shieldId(new ShieldId(RandomStringUtils.randomAlphanumeric(6))).build()
         );
     }
 }

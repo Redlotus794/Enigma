@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.event;
 
 /**
  * 领域事件持久化接口

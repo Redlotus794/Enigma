@@ -1,5 +1,6 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.event;
 
+import com.rdlts.enigma.ddd.core.ValueObject;
 import lombok.*;
 
 import javax.annotation.Nonnull;

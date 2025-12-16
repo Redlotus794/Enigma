@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.event;
 
 /**
  * DomainEventPublisher - 事件源发布

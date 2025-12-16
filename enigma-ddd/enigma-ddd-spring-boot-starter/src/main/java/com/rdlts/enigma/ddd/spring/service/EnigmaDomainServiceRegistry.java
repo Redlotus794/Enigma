@@ -1,7 +1,8 @@
 package com.rdlts.enigma.ddd.spring.service;
 
-import com.rdlts.enigma.ddd.core.DomainService;
-import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
+import com.rdlts.enigma.ddd.core.service.DomainService;
+import com.rdlts.enigma.ddd.core.service.DomainServiceRegistry;
+import com.rdlts.enigma.ddd.core.service.DomainServiceRegistryHolder;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -53,7 +54,7 @@ public class EnigmaDomainServiceRegistry implements DomainServiceRegistry, Initi
 
     /**
      * 提供Instance注册到DomainServiceRegistry
-     * @see com.rdlts.enigma.ddd.core.DomainServiceRegistryHolder
+     * @see DomainServiceRegistryHolder
      * @return DomainServiceRegistry
      */
     @Override

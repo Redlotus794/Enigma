@@ -1,7 +1,8 @@
 package com.rdlts.enigma.ddd.spring.event;
 
-import com.rdlts.enigma.ddd.core.DomainEventReproducer;
-import com.rdlts.enigma.ddd.core.DomainEventReproducible;
+import com.rdlts.enigma.ddd.core.event.DomainEventReproducer;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventReproducible;
 import com.rdlts.enigma.ddd.spring.exception.EnigmaDDDSpringRuntimeException;
 import com.rdlts.enigma.ddd.spring.exception.EnigmaRebuildDomainEventException;
 import lombok.extern.log4j.Log4j2;
@@ -32,7 +33,7 @@ public class EnigmaDomainEventReproducer implements DomainEventReproducer {
      * @param <T>     事件类型
      * @return DomainEventReproducible
      * @throws ClassNotFoundException 反射类型失败
-     * @see com.rdlts.enigma.ddd.core.DomainEvent
+     * @see DomainEvent
      */
     @Override
     @SuppressWarnings("all")

@@ -1,8 +1,8 @@
 package com.rdlts.enigma.ddd.spring.event.builder;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventParam;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
 import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.spring.utils.EnigmaSpringContextUtils;
 import org.junit.jupiter.api.Assertions;

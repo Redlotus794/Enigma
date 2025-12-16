@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.service;
 
 /**
  * <a href="https://wcnn2j4xsnan.feishu.cn/wiki/LVcNwUs2yiamFkkyQIWch7UUnab">

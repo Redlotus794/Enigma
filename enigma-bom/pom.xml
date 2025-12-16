@@ -13,7 +13,7 @@
     <description>Enigma Bill Of Materials</description>
 
     <properties>
-        <enigma.ddd.version>1.0.0-SNAPSHOT</enigma.ddd.version>
+        <enigma.ddd.version>1.1.0-SNAPSHOT</enigma.ddd.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

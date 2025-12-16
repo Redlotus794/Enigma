@@ -1,6 +1,6 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
-import com.rdlts.enigma.ddd.core.DomainService;
+import com.rdlts.enigma.ddd.core.service.DomainService;
 
 /**
  * NotExistsDomainService

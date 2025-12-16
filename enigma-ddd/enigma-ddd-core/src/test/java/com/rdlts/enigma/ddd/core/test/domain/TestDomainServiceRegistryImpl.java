@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
-import com.rdlts.enigma.ddd.core.DomainService;
-import com.rdlts.enigma.ddd.core.DomainServiceRegistry;
+import com.rdlts.enigma.ddd.core.service.DomainService;
+import com.rdlts.enigma.ddd.core.service.DomainServiceRegistry;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;

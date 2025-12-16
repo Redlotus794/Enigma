@@ -1,6 +1,6 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
-import com.rdlts.enigma.ddd.core.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
 
 import javax.annotation.Nonnull;
 

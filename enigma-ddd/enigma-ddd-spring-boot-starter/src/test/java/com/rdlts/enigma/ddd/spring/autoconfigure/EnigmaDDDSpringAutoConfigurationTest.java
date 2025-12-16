@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.spring.autoconfigure;
 
-import com.rdlts.enigma.ddd.core.DomainEventPublisher;
-import com.rdlts.enigma.ddd.core.DomainEventRepository;
+import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
+import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
 import com.rdlts.enigma.ddd.spring.test.EnigmaDDDSpringTestApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

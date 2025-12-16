@@ -1,8 +1,8 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventParam;
-import com.rdlts.enigma.ddd.core.DomainEventPublisher;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
+import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
 
 import java.util.logging.Logger;
 

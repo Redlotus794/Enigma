@@ -1,4 +1,4 @@
-package com.rdlts.enigma.ddd.core;
+package com.rdlts.enigma.ddd.core.event;
 
 import com.rdlts.enigma.ddd.core.test.io.FileBackup;
 import org.apache.commons.io.FileUtils;
@@ -27,7 +27,7 @@ class DomainEventPublisherTest {
         // 读取services文件，置空，测试load方法
         Collection<FileBackup> fileBackups = new ArrayList<>();
         try {
-            final Enumeration<URL> systemResources = ClassLoader.getSystemResources("META-INF/services/com.rdlts.enigma.ddd.core.DomainEventPublisher");
+            final Enumeration<URL> systemResources = ClassLoader.getSystemResources("META-INF/services/com.rdlts.enigma.ddd.core.event.DomainEventPublisher");
             while (systemResources.hasMoreElements()) {
                 final File file = new File(systemResources.nextElement().toURI());
                 final FileBackup fileBackup = new FileBackup(file, FileUtils.readFileToString(file));

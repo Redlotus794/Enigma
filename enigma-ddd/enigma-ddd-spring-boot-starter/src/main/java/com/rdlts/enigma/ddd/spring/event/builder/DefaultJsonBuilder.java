@@ -1,9 +1,9 @@
 package com.rdlts.enigma.ddd.spring.event.builder;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventParam;
-import com.rdlts.enigma.ddd.core.DomainEventUUID;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
+import com.rdlts.enigma.ddd.core.event.DomainEventUUID;
 import com.rdlts.enigma.ddd.spring.utils.FastJsonUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;

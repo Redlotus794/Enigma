@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainEntity;
-import com.rdlts.enigma.ddd.core.DomainEventParam;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
 import com.rdlts.enigma.ddd.core.EntityVersion;
 import lombok.*;
 

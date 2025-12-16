@@ -1,8 +1,8 @@
 package com.rdlts.enigma.ddd.core.test.domain;
 
-import com.rdlts.enigma.ddd.core.DomainEvent;
-import com.rdlts.enigma.ddd.core.DomainEventRepository;
-import com.rdlts.enigma.ddd.core.DomainEventUUID;
+import com.rdlts.enigma.ddd.core.event.DomainEvent;
+import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
+import com.rdlts.enigma.ddd.core.event.DomainEventUUID;
 
 import java.util.Map;
 import java.util.Optional;

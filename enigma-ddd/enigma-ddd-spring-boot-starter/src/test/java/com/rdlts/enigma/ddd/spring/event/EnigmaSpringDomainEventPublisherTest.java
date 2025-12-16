@@ -1,6 +1,6 @@
 package com.rdlts.enigma.ddd.spring.event;
 
-import com.rdlts.enigma.ddd.core.DomainEventPublisher;
+import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
 import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.spring.test.domain.Shield;
 import com.rdlts.enigma.ddd.spring.test.domain.ShieldId;
@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
