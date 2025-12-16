@@ -1,6 +1,7 @@
 package com.rdlts.enigma.random.autoconfigure;
 
-import com.rdlts.enigma.random.domain.EnigmaRandomizerRegistryContext;
+import com.rdlts.enigma.random.domain.EnigmaRandomGenerator;
+import com.rdlts.enigma.random.infrastructure.EasyRandomGenerator;
 import com.rdlts.enigma.random.infrastructure.EasyRandomizerRegistryContextImpl;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
@@ -21,6 +22,16 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 @ConditionalOnClass(EasyRandom.class)
 public class EasyRandomAutoConfiguration {
+
+    /**
+     * 默认使用Easy Random的随机生成方式
+     * @return EnigmaRandomGenerator
+     */
+    @Bean
+    @ConditionalOnMissingBean(EnigmaRandomGenerator.class)
+    public EnigmaRandomGenerator enigmaRandomGenerator(EasyRandomParameters easyRandomParameters) {
+        return new EasyRandomGenerator(easyRandomParameters);
+    }
 
     /**
      * easyRandomParameters

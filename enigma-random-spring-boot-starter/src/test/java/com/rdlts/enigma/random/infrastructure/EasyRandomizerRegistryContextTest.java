@@ -20,7 +20,7 @@ import java.util.Collection;
 @Component
 public class EasyRandomizerRegistryContextTest extends EnigmaSpringBootBasedTest {
 
-    @Autowired
+    @Autowired(required = false)
     EasyRandomizerRegistryContextImpl easyRandomizerRegistryContext;
 
     @Autowired
