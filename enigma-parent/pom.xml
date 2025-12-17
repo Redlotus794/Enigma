@@ -33,7 +33,7 @@
             <dependency>
                 <groupId>com.rdlts.enigma</groupId>
                 <artifactId>enigma-bom</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
