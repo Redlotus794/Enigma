@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2025/12/4 13:40
  */
 @Configuration
-public class EnigmaSpringAutoConfiguration {
+public class EnigmaDomainComponentAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(DomainEventPublisher.class)

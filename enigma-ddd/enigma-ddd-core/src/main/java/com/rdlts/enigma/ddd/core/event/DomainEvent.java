@@ -3,6 +3,7 @@ package com.rdlts.enigma.ddd.core.event;
 import lombok.Data;
 
 import javax.annotation.Nonnull;
+import java.time.Instant;
 
 /**
  * <a href="https://wcnn2j4xsnan.feishu.cn/wiki/XQ3lwTTBLiazVQkfmKNcmdCanmg">
@@ -17,17 +18,25 @@ public abstract class DomainEvent<T extends DomainEventParam>
 
     /**
      * 事件唯一标识
-     *
      * @see DomainEventUUID
      */
     protected DomainEventUUID eventUuid;
 
     /**
      * 事件内容
-     *
      * @see DomainEventParam
      */
     protected T eventContent;
+
+    /**
+     * 事件发生时间
+     */
+    protected Instant eventTime;
+
+    /**
+     * 事件创建人
+     */
+    protected String createdBy;
 
     /**
      * 构造器
@@ -42,6 +51,21 @@ public abstract class DomainEvent<T extends DomainEventParam>
     public DomainEvent(@Nonnull T eventContent) {
         this.eventUuid = DomainEventUUID.next();
         this.eventContent = eventContent;
+        this.eventTime = Instant.now();
+        this.createdBy = null;
+    }
+
+    /**
+     * 构造器
+     * @param eventContent T
+     * @param eventTime 事件发生时间
+     * @param createdBy 创建人
+     */
+    public DomainEvent(T eventContent, Instant eventTime, String createdBy) {
+        this.eventUuid = DomainEventUUID.next();
+        this.eventContent = eventContent;
+        this.eventTime = eventTime;
+        this.createdBy = createdBy;
     }
 
     public String domainEventName() {

@@ -1,7 +1,8 @@
 package com.rdlts.enigma.ddd.spring.utils;
 
-import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
+import com.rdlts.enigma.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.spring.test.domain.TestValueObject;
+import com.rdlts.enigma.tools.spring.EnigmaSpringContextUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 
@@ -28,7 +29,7 @@ class EnigmaSpringContextUtilsTest extends EnigmaSpringBootBasedTest {
     void testApplicationContext() {
         // 测试应用上下文是否正确获取
         EnigmaSpringContextUtils utils = EnigmaSpringContextUtils.instance();
-        ApplicationContext context = utils.applicationContext();
+        ApplicationContext context = utils.getApplicationContext();
         assertNotNull(context);
     }
 
@@ -49,7 +50,7 @@ class EnigmaSpringContextUtilsTest extends EnigmaSpringBootBasedTest {
         String beanName = "testVO";
         utils.loadBean(beanName, TestValueObject.class);
 
-        TestValueObject t = (TestValueObject) EnigmaSpringContextUtils.instance().applicationContext().getBean("testVO");
+        TestValueObject t = (TestValueObject) EnigmaSpringContextUtils.instance().getApplicationContext().getBean("testVO");
         assertNotNull(t);
 
         // 卸载Bean

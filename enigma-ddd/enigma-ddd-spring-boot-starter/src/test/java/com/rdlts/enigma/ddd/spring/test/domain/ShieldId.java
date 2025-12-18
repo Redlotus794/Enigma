@@ -4,6 +4,7 @@ import com.rdlts.enigma.ddd.core.ValueObject;
 import lombok.*;
 
 import javax.annotation.Nonnull;
+import java.util.UUID;
 
 /**
  * ShieldId
@@ -17,6 +18,7 @@ import javax.annotation.Nonnull;
 @EqualsAndHashCode
 @Builder
 @ValueObject
+@ToString
 public class ShieldId {
 
     @Nonnull

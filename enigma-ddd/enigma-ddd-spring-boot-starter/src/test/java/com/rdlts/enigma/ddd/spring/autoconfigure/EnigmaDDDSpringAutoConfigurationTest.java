@@ -2,7 +2,7 @@ package com.rdlts.enigma.ddd.spring.autoconfigure;
 
 import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
 import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
-import com.rdlts.enigma.ddd.spring.test.EnigmaDDDSpringTestApplication;
+import com.rdlts.enigma.ddd.spring.autoconfigure.bootstrap.ConfigurationApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        classes = EnigmaDDDSpringTestApplication.class)
+        classes = ConfigurationApplication.class)
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(properties = "enigma.spring.enabled = false")
 class EnigmaDDDSpringAutoConfigurationTest implements ApplicationContextAware {

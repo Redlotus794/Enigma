@@ -41,13 +41,32 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-random-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-tools-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <!-- 日志，影响lombok log4j2 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-test-spring-boot-starter</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -71,7 +90,7 @@
             <dependency>
                 <groupId>com.rdlts.enigma</groupId>
                 <artifactId>enigma-bom</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

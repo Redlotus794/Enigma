@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.spring.event;
 
+import com.rdlts.enigma.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.core.event.DomainEventReproducer;
-import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.spring.exception.EnigmaDDDSpringRuntimeException;
 import com.rdlts.enigma.ddd.spring.test.domain.ShieldSavedEvent;
 import lombok.SneakyThrows;

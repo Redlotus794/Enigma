@@ -2,6 +2,7 @@ package com.rdlts.enigma.ddd.spring.test.domain;
 
 import com.rdlts.enigma.ddd.core.DomainEntity;
 import com.rdlts.enigma.ddd.core.EntityVersion;
+import com.rdlts.enigma.ddd.core.event.DomainEventParam;
 import lombok.*;
 
 import javax.annotation.Nonnull;
@@ -17,7 +18,7 @@ import javax.annotation.Nonnull;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class Shield implements DomainEntity<ShieldId> {
+public class Shield implements DomainEntity<ShieldId>, DomainEventParam {
 
     @Nonnull
     ShieldId shieldId;

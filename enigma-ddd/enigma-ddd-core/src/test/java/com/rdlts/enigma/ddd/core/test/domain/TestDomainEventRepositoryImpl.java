@@ -4,6 +4,7 @@ import com.rdlts.enigma.ddd.core.event.DomainEvent;
 import com.rdlts.enigma.ddd.core.event.DomainEventRepository;
 import com.rdlts.enigma.ddd.core.event.DomainEventUUID;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,5 +27,10 @@ public class TestDomainEventRepositoryImpl implements DomainEventRepository {
     @Override
     public Optional<DomainEvent<?>> find(DomainEventUUID domainEventUuid) {
         return Optional.ofNullable(STORE.get(domainEventUuid));
+    }
+
+    @Override
+    public Collection<DomainEvent<?>> findAll() {
+        return STORE.values();
     }
 }

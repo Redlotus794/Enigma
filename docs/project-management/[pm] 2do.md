@@ -2,7 +2,7 @@
 
 ## ddd-spring
 - [ ] 领域缓存对象 DomainMemoryCachedRepository
-- [ ] 领域事件自动化 DomainRepositoryEventAutomation
+- [x] 领域事件自动化 DomainRepositoryEventAutomation 2025-12-18
 - [ ] 异常收集器 
 
 ## ddd-core

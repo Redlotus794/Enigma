@@ -4,6 +4,7 @@ import com.rdlts.enigma.ddd.core.test.domain.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -27,6 +28,12 @@ public class DomainEventTest {
                 .build();
         TestDomainEvent testDomainEvent = new TestDomainEvent(testDomainEntity);
         Assertions.assertEquals("1", testDomainEvent.eventContent.getTestId().getId());
+
+        final TestDomainEvent testDomainEvent1 = new TestDomainEvent(testDomainEntity, Instant.now(), "test");
+        Assertions.assertEquals("test", testDomainEvent1.createdBy);
+        Assertions.assertNotNull(testDomainEvent1.eventUuid);
+        Assertions.assertEquals(TestDomainEvent.class.getName(), testDomainEvent1.domainEventName());
+        Assertions.assertNotNull(testDomainEvent1.eventContent);
     }
 
     @Test

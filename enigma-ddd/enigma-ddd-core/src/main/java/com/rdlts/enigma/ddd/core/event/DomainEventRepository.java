@@ -2,6 +2,7 @@ package com.rdlts.enigma.ddd.core.event;
 
 import com.rdlts.enigma.ddd.core.DomainRepository;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -26,4 +27,10 @@ public interface DomainEventRepository {
      * @return Optional DomainEvent
      */
     Optional<DomainEvent<?>> find(DomainEventUUID domainEventUuid);
+
+    /**
+     * 查找所有领域事件对象
+     * @return Optional DomainEvent
+     */
+    Collection<DomainEvent<?>> findAll();
 }

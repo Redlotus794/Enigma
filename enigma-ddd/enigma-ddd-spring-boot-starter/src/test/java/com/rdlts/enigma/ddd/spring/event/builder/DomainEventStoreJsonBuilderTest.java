@@ -1,10 +1,10 @@
 package com.rdlts.enigma.ddd.spring.event.builder;
 
 import com.alibaba.fastjson2.JSONObject;
+import com.rdlts.enigma.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.core.event.DomainEvent;
 import com.rdlts.enigma.ddd.core.event.DomainEventParam;
-import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
-import com.rdlts.enigma.ddd.spring.utils.EnigmaSpringContextUtils;
+import com.rdlts.enigma.tools.spring.EnigmaSpringContextUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.BeanInitializationException;

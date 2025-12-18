@@ -1,7 +1,7 @@
 package com.rdlts.enigma.ddd.spring.event;
 
+import com.rdlts.enigma.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.core.event.DomainEventPublisher;
-import com.rdlts.enigma.ddd.spring.EnigmaSpringBootBasedTest;
 import com.rdlts.enigma.ddd.spring.test.domain.Shield;
 import com.rdlts.enigma.ddd.spring.test.domain.ShieldId;
 import com.rdlts.enigma.ddd.spring.test.domain.ShieldSavedEvent;
