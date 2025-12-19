@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "enigma.random.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable Enigma Random Auto Configuration",
+      "default": true
+    }
+  ]
+}

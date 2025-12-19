@@ -1,0 +1,23 @@
+{
+  "domainEventName":"com.rdlts.enigma.ddd.spring.test.domain.ShieldSavedEvent",
+  "eventContent": [
+    {
+      "entityVersion": {
+        "version": 1
+      },
+      "shieldId": {
+        "val": "test1"
+      }
+    },
+    {
+      "entityVersion": {
+        "version": 1
+      },
+      "shieldId": {
+        "val": "test2"
+      }
+    }
+  ],
+  "eventUuid":"shieldSavedEvent_list_test1_test2",
+  "paramType":"com.rdlts.enigma.ddd.spring.test.domain.Shield"
+}
