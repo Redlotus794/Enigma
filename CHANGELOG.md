@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.1.1-RELEASE
+- 增加enigma-tools的自动装配功能
+
 ## 1.1.0-RELEASE
 
 发布时间: 2025-12-19
