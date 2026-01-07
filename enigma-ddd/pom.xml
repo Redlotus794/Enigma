@@ -6,7 +6,7 @@
 
     <groupId>com.rdlts.enigma</groupId>
     <artifactId>enigma-ddd</artifactId>
-    <version>1.1.0.RELEASE</version>
+    <version>1.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Enigma Domain Driven Design</name>
     <description>Enigma DDD Project</description>
