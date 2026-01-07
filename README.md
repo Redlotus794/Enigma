@@ -27,7 +27,12 @@ mvn clean install
 
 # 或者使用 Maven Wrapper（推荐）
 ./mvnw clean install
+```
 
+2. maven变更版本
+```shell
+./mvn_versions set 1.0.0 
+./mvn_versions commit 
 ```
 
 ## 🧩 技术栈使用
