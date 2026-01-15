@@ -58,6 +58,9 @@ public abstract class EntityJsonObject<DE extends DomainEntity<?>> {
      * 提供一个静态方法，创建一个新的 EntityJsonObject 实例，并从给定的领域实体转换。
      * 建议在具体的应用代码中使用RuntimeException封装异常.
      *
+     * @deprecated 见EntityJsonable
+     *
+     * @see EntityJsonable
      * @see EntityJsonObject#EntityJsonObject(DomainEntity)
      * @param ejoClass EJO类型
      * @param entity 实体对象
@@ -66,6 +69,7 @@ public abstract class EntityJsonObject<DE extends DomainEntity<?>> {
      * @param <EJO> EntityJsonObject 类型
      * @throws EnigmaDDDRuntimeException 如果在创建实例或转换过程中发生错误
      */
+    @Deprecated
     public static <DE extends DomainEntity<?>, EJO extends EntityJsonObject<DE>> EJO toEntityJson(
         @Nonnull Class<EJO> ejoClass,
         @Nonnull DE entity
