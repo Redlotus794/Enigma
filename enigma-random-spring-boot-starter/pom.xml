@@ -7,12 +7,12 @@
     <parent>
         <groupId>com.rdlts.enigma</groupId>
         <artifactId>enigma-parent</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.1.1-RELEASE</version>
         <relativePath>../enigma-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>enigma-random-spring-boot-starter</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1-RELEASE</version>
     <name>Enigma Random</name>
     <description>Enigma Random</description>
 
