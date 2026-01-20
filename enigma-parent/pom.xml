@@ -6,7 +6,7 @@
 
     <groupId>com.rdlts.enigma</groupId>
     <artifactId>enigma-parent</artifactId>
-    <version>1.1.1-RELEASE</version>
+    <version>1.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Enigma Parent</name>

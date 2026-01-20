@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.rdlts.enigma</groupId>
         <artifactId>enigma-ddd</artifactId>
-        <version>1.1.1-RELEASE</version>
+        <version>1.1.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>enigma-ddd-core</artifactId>
