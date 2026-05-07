@@ -442,7 +442,7 @@ docs/
 │       ├── maven_wrapper.sh
 │       └── versions.sh
 └── project-management/
-    └── [pm] 2do.md        # 项目管理待办事项
+    └── 2do.md             # 项目管理待办事项
 ```
 
 各模块 `README.md` 为**模块级文档**，必须包含：
