@@ -7,7 +7,7 @@
     <!-- 不能继承parent, 有循环依赖问题，parent里已经导入bom的依赖 -->
     <groupId>com.rdlts.enigma</groupId>
     <artifactId>enigma-bom</artifactId>
-    <version>1.1.1-RELEASE</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Enigma BOM</name>

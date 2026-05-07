@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.2.0-SNAPSHOT
+
+发布时间: 2026-05-07
+
+### 新增
+- 版本升级至 1.2.0-SNAPSHOT
+
 ## 1.1.1-RELEASE
 - 增加 maven版本更新脚本
 - 增加enigma-tools的自动装配功能

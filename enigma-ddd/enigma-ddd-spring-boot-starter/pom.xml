@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.rdlts.enigma</groupId>
         <artifactId>enigma-ddd</artifactId>
-        <version>1.1.1-RELEASE</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>enigma-ddd-spring-boot-starter</artifactId>
