@@ -249,6 +249,8 @@ Enigma/
 
 **Smil Nexus 专用 settings 文件路径**：`/Users/wangjialong/maven/settings/settings-smil.xml`
 
+> ⚠️ **重要**：连接 Smil Nexus 私服（`nexus.smil.com:10022`）时**必须关闭 VPN**，开启 VPN 会导致网络路由异常，deploy / download 均会失败。
+
 该文件已预配置以下内容：
 - `snapshots` / `releases` / `nexus` 三个 server 认证信息
 - mirror 指向 `http://nexus.smil.com:10022/repository/maven-public/`
@@ -397,6 +399,8 @@ mvn versions:revert
 
 > **Smil Nexus 专用 settings 文件**：`/Users/wangjialong/maven/settings/settings-smil.xml`  
 > deploy 时必须通过 `-s` 参数指定，该文件包含 snapshots / releases / nexus 三个 server 认证配置及 mirror 设置。
+>
+> ⚠️ **重要**：deploy 到 Smil Nexus 时**必须关闭 VPN**，否则无法连接到私服，deploy 将失败。
 
 ```shell
 # 发布全量模块到 Smil Nexus 私服（推荐）
