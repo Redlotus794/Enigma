@@ -81,3 +81,6 @@ $RECYCLE.BIN/
 *.swo
 
 .codex
+.github
+.vscode
+.java-version

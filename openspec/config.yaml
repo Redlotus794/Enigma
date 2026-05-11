@@ -1,20 +1,91 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Project: Enigma
+  GroupId: com.rdlts.enigma
+  Current version: 1.2.0-SNAPSHOT
+  License: GPL-3.0
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Enigma is a Spring Boot + Java 8 + Maven enterprise framework based on DDD.
+  It provides reusable starter modules and shared infrastructure for business projects.
+
+  Primary stack:
+  - Java 8 only (source/target 1.8); do not use Java 9+ APIs.
+  - Spring Boot 2.0.7.RELEASE / Spring Framework 5.0.11.RELEASE.
+  - Maven 3.5+ with Maven Wrapper.
+  - Lombok 1.18.38, Fastjson2 2.0.52, Jackson Databind 2.9.7.
+  - JUnit Jupiter 5.1.1, Mockito 4.6.1, JaCoCo 0.8.7.
+
+  Source of truth, in order of priority:
+  1. enigma-parent/pom.xml for plugin versions, compiler setup, build behavior, and distributionManagement.
+  2. enigma-bom/pom.xml for all dependency versions; child modules must not hardcode dependency versions.
+  3. enigma-ddd/enigma-ddd-core for DDD interfaces, annotations, and extension points.
+  4. README.md and CHANGELOG.md for project overview, release notes, and coverage expectations.
+  5. agents.md for workspace conventions, documentation rules, deployment notes, and safety boundaries.
+
+  Core module boundaries:
+  - enigma-bom manages dependency versions only; no business code and no Spring beans.
+  - enigma-parent manages plugins and module aggregation only.
+  - enigma-common contains shared constants and pure utilities without Spring dependencies.
+  - enigma-ddd-core must remain free of Spring dependencies.
+  - enigma-ddd-spring-boot-starter contains Spring-side DDD infrastructure only.
+  - enigma-test-spring-boot-starter is test-only infrastructure and must be consumed with scope=test.
+
+  DDD constraints:
+  - Aggregates must follow DomainAggregate / DomainAggregateRoot contracts.
+  - Entities must implement DomainEntity.identity() and return a non-null generated identity.
+  - Value objects use @ValueObject, must be immutable, and must not expose setters.
+  - Repositories follow DomainRepository contracts and return Optional for find operations where applicable.
+  - Domain services are stateless and accessed through DomainServiceRegistry.
+  - Domain events are published through DomainEventPublisher.
+
+  Coding rules:
+  - Use javax.annotation.Nonnull / Nullable on public APIs where appropriate.
+  - Prefer interfaces such as List, Map, and Collection in signatures.
+  - Never return null collections; return empty collections instead.
+  - Use RuntimeException-based domain exceptions.
+  - Use java.time APIs for dates and times.
+  - Use Lombok and @Slf4j; never use System.out.println.
+  - Follow Alibaba Coding Guidelines; generated code should avoid Blocker/Critical issues.
+
+  API and packaging rules:
+  - API URIs use lowercase kebab-case and plural resources.
+  - Request DTOs end with Request; response DTOs end with Response or DTO.
+  - Response payloads should follow code/message/data envelope conventions.
+  - Starter auto-configuration is declared in META-INF/spring.factories.
+
+  Build and verification expectations:
+  - Validate changes with Maven, typically mvn clean verify or ./mvnw clean verify.
+  - Surefire recognizes *Test.java; Failsafe recognizes *IT.java.
+  - Default parent coverage threshold is 85%; some modules raise it to 95%.
+  - Public classes, interfaces, and methods should include JavaDoc.
+
+  Deployment notes:
+  - Nexus base URL: http://nexus.smil.com:10022/repository/
+  - Use settings file: /Users/wangjialong/maven/settings/settings-smil.xml
+  - When deploying to Smil Nexus, VPN must be disabled, otherwise deploy/download may fail.
+
+  Documentation notes:
+  - Update CHANGELOG.md for release-facing changes.
+  - Project management todo file is docs/project-management/2do.md.
+  - Module README files should describe module responsibility, dependencies, examples, and configuration.
+
+rules:
+  proposal:
+    - Base every proposal on existing POM files, agents.md, README.md, and actual module structure; do not invent modules or versions.
+    - Explicitly state affected modules, dependency boundary impact, DDD boundary impact, and documentation impact.
+    - Include Non-goals when the requested change should not alter module responsibilities or public APIs.
+    - If deployment or release flow is involved, mention the Nexus settings file path and the VPN-disabled requirement.
+  spec:
+    - Keep specs aligned with Java 8, Spring Boot 2.0.7.RELEASE, and Maven multi-module conventions.
+    - For dependency changes, reference enigma-bom/pom.xml as the version authority.
+    - For plugin or build changes, reference enigma-parent/pom.xml as the authority.
+    - For DDD changes, name the exact core contracts involved, such as DomainEntity, DomainAggregateRoot, DomainRepository, DomainService, or DomainEvent.
+    - Clearly separate behavior in application, domain, and infrastructure layers.
+    - Do not specify Spring dependencies for enigma-ddd-core.
+  tasks:
+    - "Break work down by module and by artifact type: source, tests, POM, README, CHANGELOG, and docs."
+    - Include verification tasks with concrete Maven commands.
+    - Add documentation update tasks whenever behavior, dependency usage, commands, or release processes change.
+    - For release or deployment tasks, include version check, changelog check, settings path check, and VPN check.
+    - Prefer small, independently verifiable tasks over large mixed changes.
