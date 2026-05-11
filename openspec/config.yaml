@@ -14,7 +14,7 @@ context: |
   - Spring Boot 2.0.7.RELEASE / Spring Framework 5.0.11.RELEASE.
   - Maven 3.5+ with Maven Wrapper.
   - Lombok 1.18.38, Fastjson2 2.0.52, Jackson Databind 2.9.7.
-  - JUnit Jupiter 5.1.1, Mockito 4.6.1, JaCoCo 0.8.7.
+  - JUnit Jupiter 5.9.1, Cucumber 7.12, Mockito 4.6.1, JaCoCo 0.8.7.
 
   Source of truth, in order of priority:
   1. enigma-parent/pom.xml for plugin versions, compiler setup, build behavior, and distributionManagement.
@@ -76,7 +76,7 @@ rules:
     - Explicitly state affected modules, dependency boundary impact, DDD boundary impact, and documentation impact.
     - Include Non-goals when the requested change should not alter module responsibilities or public APIs.
     - If deployment or release flow is involved, mention the Nexus settings file path and the VPN-disabled requirement.
-  spec:
+  specs:
     - Keep specs aligned with Java 8, Spring Boot 2.0.7.RELEASE, and Maven multi-module conventions.
     - For dependency changes, reference enigma-bom/pom.xml as the version authority.
     - For plugin or build changes, reference enigma-parent/pom.xml as the authority.
