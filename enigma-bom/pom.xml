@@ -22,7 +22,8 @@
         <spring.cloud.version>2.0.2.RELEASE</spring.cloud.version>
         <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
         <junit.version>5.9.3</junit.version>
-        <cucumber.version>7.12</cucumber.version>
+        <junit-platform.version>1.9.3</junit-platform.version>
+        <cucumber.version>7.12.0</cucumber.version>
     </properties>
 
     <dependencyManagement>
@@ -182,8 +183,26 @@
             </dependency>
             <dependency>
                 <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-commons</artifactId>
+                <version>${junit-platform.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-engine</artifactId>
+                <version>${junit-platform.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>${junit-platform.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-suite</artifactId>
-                <version>1.9.3</version>
+                <version>${junit-platform.version}</version>
             </dependency>
 
             <dependency>
@@ -199,12 +218,12 @@
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-junit-platform-engine</artifactId>
-                <version>7.12.0</version>
+                <version>${cucumber.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-spring</artifactId>
-                <version>7.12.0</version>
+                <version>${cucumber.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
