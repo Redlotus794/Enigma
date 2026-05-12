@@ -1,12 +1,15 @@
 # Change Log
 
-## 1.2.0-SNAPSHOT
+## 1.2.0.RELEASE
 
 发布时间: 2026-05-07
 
 ### 新增
 - 版本升级至 1.2.0-SNAPSHOT
 - enigma-test-spring-boot-starter 新增 BDD 测试组件与游击士支援任务评级 demo
+
+### 更新
+- engima-bom 升级junit组件到5.9.3，添加cucumber7.12组件
 
 ## 1.1.1-RELEASE
 - 增加 maven版本更新脚本

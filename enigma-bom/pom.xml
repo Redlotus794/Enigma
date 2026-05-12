@@ -21,6 +21,8 @@
         <spring.boot.version>2.0.7.RELEASE</spring.boot.version>
         <spring.cloud.version>2.0.2.RELEASE</spring.cloud.version>
         <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
+        <junit.version>5.9.3</junit.version>
+        <cucumber.version>7.12</cucumber.version>
     </properties>
 
     <dependencyManagement>
@@ -171,17 +173,17 @@
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.9.1</version>
+                <version>${junit.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
-                <version>5.9.1</version>
+                <version>${junit.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-suite</artifactId>
-                <version>1.9.1</version>
+                <version>1.9.3</version>
             </dependency>
 
             <dependency>
