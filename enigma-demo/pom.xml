@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.rdlts.enigma</groupId>
+        <artifactId>enigma-parent</artifactId>
+        <version>1.2.0-SNAPSHOT</version>
+        <relativePath>../enigma-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>enigma-demo</artifactId>
+    <packaging>jar</packaging>
+    <name>Enigma Demo</name>
+    <description>Enigma DDD Spring Boot Demo Project</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-ddd-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rdlts.enigma</groupId>
+            <artifactId>enigma-test-spring-boot-starter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

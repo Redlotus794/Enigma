@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: enigma-demo
+
+enigma:
+  spring:
+    enabled: true
+

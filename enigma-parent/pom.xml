@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rdlts.enigma</groupId>
+    <parent>
+        <groupId>com.rdlts.enigma</groupId>
+        <artifactId>enigma-bom</artifactId>
+        <version>1.2.0-SNAPSHOT</version>
+    </parent>
+
     <artifactId>enigma-parent</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Enigma Parent</name>
@@ -22,6 +26,7 @@
         <module>../enigma-bom</module>
         <module>../enigma-common</module>
         <module>../enigma-ddd</module>
+        <module>../enigma-demo</module>
         <module>../enigma-random-spring-boot-starter</module>
         <module>../enigma-tpc-spring-boot-starter</module>
         <module>../enigma-tools-spring-boot-starter</module>

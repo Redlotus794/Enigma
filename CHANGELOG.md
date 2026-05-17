@@ -1,11 +1,13 @@
 # Change Log
 
-## 1.2.0.RELEASE
+## 1.2.0
 
-发布时间: 2026-05-07
+发布时间: 2026-05-17
 
 ### 新增
-- 版本升级至 1.2.0-SNAPSHOT
+- 新增 `enigma-demo` 示例业务模块，继承 `enigma-parent` 并集成 `enigma-ddd-spring-boot-starter`
+- 提供 `DemoTask` 示例接口，演示基于 Enigma DDD Starter 的最小可运行 Spring Boot 应用
+- 版本升级至 1.2.0
 - enigma-test-spring-boot-starter 新增 BDD 测试组件与游击士支援任务评级 demo
 
 ### 更新

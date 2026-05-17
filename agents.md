@@ -105,12 +105,15 @@ Enigma/
 
 | 来源 | 用途 |
 |------|------|
+| `docs/dev/convention/` | **代码规范唯一事实来源**；Java、Spring Boot、DDD、API、测试、Maven、数据库等开发规范必须以该目录文档为准 |
 | `enigma-parent/pom.xml` | 插件版本、覆盖率阈值、编译参数的唯一权威 |
 | `enigma-bom/pom.xml` | 所有第三方依赖版本的权威来源，子模块**不得**重复声明版本号 |
 | `enigma-ddd/enigma-ddd-core/` | DDD 核心概念接口定义，任何 DDD 类必须实现这里的接口 |
-| `README.md` | 项目背景、技术栈列表、覆盖率要求 |
+| `README.md` | 项目背景、技术栈列表、模块导航 |
 | `CHANGELOG.md` | 版本历史，版本号命名规范参考 |
 | 飞书文档 (feishu.cn) | 领域驱动设计概念文档，每个核心接口的 JavaDoc 链接均指向飞书 |
+
+> 说明：自本次规范起，**`agents.md` 与 `README.md` 不再承载代码规范明细**。凡涉及代码风格、分层、命名、接口设计、测试、Maven、数据库等规范判断，**必须仅参考** `docs/dev/convention/`；若出现重复描述或冲突，以 `docs/dev/convention/` 为准。
 
 ---
 
@@ -133,8 +136,8 @@ Enigma/
 ### 5.2 DDD 层次职责
 
 ```
-表现层 (Controller/API)      → 接收 HTTP 请求，调用应用服务，返回 DTO
-应用层 (Application Service) → 编排领域对象，不含业务规则，调用 Repository
+用户接口层 (User Interface)      → 接收 HTTP 请求，调用应用服务，返回 DTO
+应用服务层 (Application Service) → 编排领域对象，不含业务规则，调用 Repository
 领域层 (Domain)              → 实现 DomainEntity / DomainAggregate / DomainService，包含核心业务规则
 基础设施层 (Infrastructure)  → 实现 DomainRepository，与数据库/外部系统交互
 ```
@@ -164,74 +167,31 @@ Enigma/
 
 ## 7. 项目规范
 
-### 7.1 Java 8 代码规范
+### 7.1 代码规范唯一事实来源
 
-- **编译级别**：`source=1.8`，`target=1.8`，严格遵守，**不得使用 Java 9+ API**
-- **注解工具**：使用 Lombok（`@Data`、`@Builder`、`@Slf4j` 等），Lombok 统一版本 `1.18.38`
-- **Null 安全**：使用 `javax.annotation.Nonnull` / `@Nullable` 标注方法返回值与参数
-- **集合**：优先使用接口类型（`List`、`Map`、`Collection`），返回值不返回 `null`，返回空集合
-- **Optional**：`Repository.find()` 返回 `Optional<T>`，`findRequired()` 直接返回实体或抛 `DomainEntityNotFoundException`
-- **异常**：领域异常继承 `EnigmaDDDRuntimeException`，使用 RuntimeException，不强制 checked exception
-- **日期时间**：使用 `java.time` 包（`Instant`、`LocalDate` 等），工具类使用 `LocalDateUtils`
-- **日志**：通过 `spring-boot-starter-logging`（Logback），使用 `@Slf4j` 注入，**禁止** System.out.println
-- **代码静态检查**：安装并使用 **Alibaba Coding Guidelines** IDE 插件，生成代码不得有 Blocker/Critical 级别警告
+所有代码规范均以 `docs/dev/convention/` 为准，本文件不再重复维护代码规范细则。
 
-### 7.2 DDD 项目规范
+当前应优先参考的规范文档包括但不限于：
 
-核心接口均位于 `enigma-ddd-core`，实现时**必须**遵循：
+- `docs/dev/convention/java-convention.md`
+- `docs/dev/convention/java-ddd-convention.md`
+- `docs/dev/convention/java-api-convention.md`
+- `docs/dev/convention/java-directory-structure-convention.md`
+- `docs/dev/convention/java-test-convention.md`
+- `docs/dev/convention/java-persistence-object-convention.md`
+- `docs/dev/convention/spring-boot-convention.md`
+- `docs/dev/convention/maven-convention.md`
+- `docs/dev/convention/db-mysql-convention.md`
+- `docs/dev/convention/db-mongo-convention.md`
+- `docs/dev/convention/redis-convention.md`
+- `docs/dev/convention/rabbitmq-convention.md`
 
-| 概念 | 接口/注解 | 规则 |
-|------|----------|------|
-| 聚合根 | `DomainAggregateRoot` | 每个聚合有且只有一个聚合根 |
-| 领域实体 | `DomainEntity<PKType>` | 必须实现 `identity()` 返回非空主键；按需实现 `version()` |
-| 值对象 | `@ValueObject` | 不可变，无 setter，通过 `ValueObjectProcessor` 编译期校验 |
-| 聚合 | `DomainAggregate<T extends DomainAggregateRoot>` | `root()` 返回非空聚合根 |
-| 领域资源库 | `DomainRepository<DE, IdentityType>` | 必须实现 `find()`、`findAll()`、`save()`、`saveAll()`、`remove()`、`removeAll()` |
-| 领域服务 | `DomainService` | 无状态，通过 `DomainServiceRegistry` 注册与获取 |
-| 领域事件 | `DomainEvent<T extends DomainEventParam>` | 继承该抽象类，通过 `DomainEventPublisher` 发布 |
-| CQRS | `Command` / `Query` / `CQRS` | 查询与命令分离，Command 改变状态，Query 只读 |
-| 适配器 | `Adapter` | 外部模型与领域模型转换 |
+### 7.2 使用规则
 
-**DDD 事件机制**（`enigma-ddd-spring-boot-starter` 默认实现）：
-- `DomainEventPublisher` → 默认实现 `EnigmaDomainEventPublisher`（基于 Spring Event）
-- `DomainServiceRegistry` → 默认实现 `EnigmaDomainServiceRegistry`（基于 Spring ApplicationContext）
-- `DomainEventRepository` → 默认实现 `EnigmaDomainEventRepository`（日志记录）
-
-**自定义覆盖**：通过 `META-INF/services/` SPI 机制替换默认实现。
-
-### 7.3 Spring Boot 2.0.7 规范
-
-- **版本锁定**：`spring-boot-maven-plugin` 版本为 `2.0.7.RELEASE`，**不得随意升级**
-- **自动装配**：Spring Boot Starter 使用 `spring-boot-autoconfigure`，在 `META-INF/spring.factories` 中声明 `EnableAutoConfiguration`
-- **配置前缀**：
-  ```yaml
-  enigma:
-    spring:
-      enabled: true   # DDD Spring 装配开关，默认 true
-  ```
-- **日志框架**：`spring-boot-starter-logging`（Logback），**禁止**同时引入 `spring-boot-starter-log4j2`（存在冲突）
-- **AOP**：通过 `spring-boot-starter-aop` 启用，用于 DDD 事件拦截等横切关注点
-- **测试**：使用 `spring-boot-starter-test`（`scope=test`），JUnit 5（`junit-jupiter-api/engine 5.1.1`）
-
-### 7.4 API 规范
-
-- **HTTP 方法语义**：GET（查询）、POST（创建）、PUT（全量更新）、PATCH（部分更新）、DELETE（删除）
-- **URI 风格**：全小写，单词间使用连字符（`-`），资源名使用复数（`/domain-entities/{id}`）
-- **响应结构**：统一包装响应体，包含 `code`、`message`、`data` 字段
-- **错误码**：使用有意义的业务错误码，领域异常转换为标准 HTTP 错误响应
-- **版本管理**：API 版本通过路径前缀管理（如 `/api/v1/`）
-- **Content-Type**：请求与响应均使用 `application/json; charset=UTF-8`
-- **DTO 命名**：请求对象以 `Request` 结尾，响应对象以 `Response` 或 `DTO` 结尾，与领域实体严格分离
-
-### 7.5 Maven 规范
-
-- **依赖声明**：所有依赖版本**统一**在 `enigma-bom/pom.xml` 的 `<dependencyManagement>` 中声明
-- **子模块引用**：子模块只声明 `groupId` 和 `artifactId`，不写版本号
-- **模块聚合**：`enigma-parent/pom.xml` 的 `<modules>` 列表为全量模块清单
-- **编码**：`<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>` 全局统一
-- **Wrapper**：使用 `enigma-ddd/mvnw`（Maven Wrapper）构建，确保 CI/CD 环境一致
-- **版本号格式**：`{major}.{minor}.{patch}-RELEASE` 或 `{major}.{minor}.{patch}-SNAPSHOT`
-- **禁止**：子模块 `pom.xml` 中不得出现未经 BOM 管理的硬编码版本号（Lombok 注解处理路径中的版本除外）
+- 在 `agents.md`、`README.md` 中出现的任何代码规范、风格示例、命名约束、分层约束、API 约束，均不应再作为判断依据
+- AI Agent 生成代码、修改代码、评审代码时，必须先查阅 `docs/dev/convention/` 中对应主题文档
+- 若 `agents.md`、`README.md`、历史文档、示例代码与 `docs/dev/convention/` 冲突，一律以 `docs/dev/convention/` 为准
+- 若 `docs/dev/convention/` 尚未覆盖某一规范主题，才可退回到 `pom.xml`、DDD 核心接口与飞书文档等其他事实来源判断
 
 ---
 
@@ -323,10 +283,8 @@ enigma:
 
 ### 9.2 测试规范
 
-- 单元测试文件命名：`*Test.java`（由 `maven-surefire-plugin` 识别，`**/*Test.java`）
-- 集成测试文件命名：`*IT.java`（由 `maven-failsafe-plugin` 识别）
-- 测试公共组件：通过 `enigma-test-spring-boot-starter`（`scope=test`）引入
-- Mockito 版本：`4.6.1`，用于 Mock 外部依赖
+测试相关命名、目录结构、测试分层与实现规范，统一参考 `docs/dev/convention/java-test-convention.md`；
+测试依赖与插件版本仍以 `enigma-bom/pom.xml`、`enigma-parent/pom.xml` 为准。
 
 ### 9.3 构建验证
 
@@ -341,9 +299,8 @@ cd enigma-parent && ./mvnw clean verify
 
 ### 9.4 代码质量
 
-- 使用 IntelliJ IDEA 的 **Alibaba Coding Guidelines** 插件分析，消除 Blocker 和 Critical 级别警告
-- JavaDoc 注释：所有 `public` 接口、类、方法必须有 JavaDoc，包含 `@author`、`@since`
-- 参数非空标注：使用 `@Nonnull`（`javax.annotation`）标注非空返回值和参数
+代码质量、JavaDoc、注解使用、静态检查等规范统一参考 `docs/dev/convention/` 对应文档，
+本文件不再重复定义细则。
 
 ### 9.5 发布检查清单
 
@@ -463,16 +420,7 @@ docs/
 
 ### 11.3 JavaDoc 规范
 
-```java
-/**
- * 类/接口描述，一句话说明职责。
- * 可选：附飞书文档链接。
- *
- * @param <T> 泛型说明
- * @author wangjialong
- * @since yyyy/MM/dd HH:mm
- */
-```
+JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专题规范文档，本文件不再维护示例模板。
 
 ### 11.4 CHANGELOG 格式
 
