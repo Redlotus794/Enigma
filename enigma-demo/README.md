@@ -1,7 +1,7 @@
 # enigma-demo
 
 `enigma-demo` 是基于 `enigma-ddd-spring-boot-starter` 构建的示例业务模块。
-当前已清空原有示例实现，仅保留基础包结构，供后续重新设计 Demo 内容使用。
+当前已补充最小领域模型示例，包含 `Equipment` 实体与 `EquipmentId` 值对象，其余 Demo 内容可继续按新的设计扩展。
 
 ## 模块职责
 
@@ -33,14 +33,16 @@
 
 ## 当前状态
 
-当前模块仅保留以下包骨架：
+当前模块已包含以下基础包结构与领域对象：
 
 - `com.rdlts.enigma.demo`
 - `com.rdlts.enigma.demo.application`
 - `com.rdlts.enigma.demo.domain`
 - `com.rdlts.enigma.demo.infrastructure`
 - `com.rdlts.enigma.demo.userinterface`
-- `com.rdlts.enigma.demo.userinterface.api`
+- `com.rdlts.enigma.demo.userinterface.openapi`
+- `com.rdlts.enigma.demo.domain.entity.Equipment`
+- `com.rdlts.enigma.demo.domain.valueobject.EquipmentId`
 
 ## 配置说明
 
