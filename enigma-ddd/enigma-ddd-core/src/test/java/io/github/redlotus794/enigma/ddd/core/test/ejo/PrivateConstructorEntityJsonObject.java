@@ -1,0 +1,29 @@
+package io.github.redlotus794.enigma.ddd.core.test.ejo;
+
+import io.github.redlotus794.enigma.ddd.core.EntityJsonObject;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+
+import org.jspecify.annotations.Nullable;
+
+/**
+ * PrivateConstructorEntityJsonObject
+ *
+ * @author wangjialong
+ * @since 2025/12/2 13:21
+ */
+public class PrivateConstructorEntityJsonObject extends EntityJsonObject<TestDomainEntity> {
+
+    private PrivateConstructorEntityJsonObject(TestDomainEntity entity) {
+        super(entity);
+    }
+
+    @Override
+    public TestDomainEntity toEntity() {
+        return null;
+    }
+
+    @Override
+    public void asJson(@Nullable TestDomainEntity entity) {
+        // Do nothing
+    }
+}

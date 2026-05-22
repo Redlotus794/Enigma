@@ -17,7 +17,7 @@ Enigma DDD 是一个基于领域驱动设计（Domain Driven Design）理念构�
 ```xml
 <!-- maven版本 -->
 <dependency>
-    <groupId>com.rdlts.enigma</groupId>
+    <groupId>io.github.redlotus794</groupId>
     <artifactId>enigma-ddd</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -40,7 +40,7 @@ Enigma DDD 是一个基于领域驱动设计（Domain Driven Design）理念构�
         </compilerArgs>
         <annotationProcessorPaths>
             <path>
-                <groupId>com.rdlts.enigma</groupId>
+                <groupId>io.github.redlotus794</groupId>
                 <artifactId>enigma-ddd-core</artifactId>
                 <version>1.0.0</version>
             </path>
@@ -60,16 +60,16 @@ enigma:
 
 通过覆盖META-INF/services，实现自定义功能：
 ```text
-com.rdlts.enigma.ddd.core.event.DomainEventPublisher
+io.github.redlotus794.enigma.ddd.core.event.DomainEventPublisher
 领域事件发布: EnigmaDomainEventPublisher，默认基于Spring Event的发布机制实现
 
-com.rdlts.enigma.ddd.core.service.DomainServiceRegistry
+io.github.redlotus794.enigma.ddd.core.service.DomainServiceRegistry
 领域服务注册: EnigmaDomainServiceRegistry，默认基于Spring ApplicationContext实现
 ```
 
 可以通过实现对应的接口组件，来覆盖默认的组件行为
 ```text
-com.rdlts.enigma.ddd.core.event.DomainEventRepository
+io.github.redlotus794.enigma.ddd.core.event.DomainEventRepository
 领域事件资源库持久化: EnigmaDomainEventRepository，默认只记录在日志中
 ```
 
@@ -88,20 +88,20 @@ com.rdlts.enigma.ddd.core.event.DomainEventRepository
 @Builder
 public class TestDomainEntity implements DomainEntity<TestId>, DomainEventParam {
 
-    @Nonnull
+    @NonNull
     TestId testId;
 
-    @Nonnull
+    @NonNull
     @Builder.Default
     EntityVersion entityVersion = EntityVersion.ZERO_VERSION;
 
-    @Nonnull
+    @NonNull
     @Override
     public TestId identity() {
         return testId;
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public EntityVersion version() {
         return entityVersion;
@@ -124,7 +124,7 @@ public class TestDomainEvent extends DomainEvent<TestDomainEntity> {
         super();
     }
 
-    public TestDomainEvent(@Nonnull TestDomainEntity eventContent) {
+    public TestDomainEvent(@NonNull TestDomainEntity eventContent) {
         super(eventContent);
     }
 }
@@ -147,10 +147,9 @@ public class TestDomainEvent extends DomainEvent<TestDomainEntity> {
 
 ### 版本变更命令
 ```shell
-mvn versions:set -DnewVersion=1.0.0-SNAPSHOT
+mvn versions:set -DnewVersion=2.0.0-SNAPSHOT
 # 提交
 mvn versions:commit
 # 回退
 mvn versions:revert
 ```
-

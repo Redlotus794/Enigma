@@ -1,5 +1,5 @@
 {
-  "domainEventName":"com.rdlts.enigma.ddd.spring.test.domain.ShieldSavedEvent",
+  "domainEventName":"io.github.redlotus794.enigma.ddd.spring.test.domain.ShieldSavedEvent",
   "eventContent": [
     {
       "entityVersion": {
@@ -19,5 +19,5 @@
     }
   ],
   "eventUuid":"shieldSavedEvent_list_test1_test2",
-  "paramType":"com.rdlts.enigma.ddd.spring.test.domain.Shield"
+  "paramType":"io.github.redlotus794.enigma.ddd.spring.test.domain.Shield"
 }

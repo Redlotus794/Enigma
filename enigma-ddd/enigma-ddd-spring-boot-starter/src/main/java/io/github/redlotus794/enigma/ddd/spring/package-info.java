@@ -1,0 +1,1 @@
+package io.github.redlotus794.enigma.ddd.spring;

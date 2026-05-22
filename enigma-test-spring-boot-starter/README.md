@@ -16,7 +16,7 @@ Enigma 测试模块，主要为各项目提供测试所使用的常量、对象�
 
 ```xml
 <dependency>
-	<groupId>com.rdlts.enigma</groupId>
+	<groupId>io.github.redlotus794</groupId>
 	<artifactId>enigma-test-spring-boot-starter</artifactId>
 	<scope>test</scope>
 </dependency>
@@ -35,8 +35,8 @@ Enigma 测试模块，主要为各项目提供测试所使用的常量、对象�
 
 模块提供 Web 测试基类与注解：
 
-- `com.rdlts.enigma.EnigmaSpringBootBasedTest`
-- `com.rdlts.enigma.test.annotation.EnigmaWebSpringBootTest`
+- `io.github.redlotus794.enigma.EnigmaSpringBootBasedTest`
+- `io.github.redlotus794.enigma.test.annotation.EnigmaWebSpringBootTest`
 
 其中：
 
@@ -49,7 +49,7 @@ Enigma 测试模块，主要为各项目提供测试所使用的常量、对象�
 package com.example.order.test;
 
 import com.example.order.OrderApplication;
-import com.rdlts.enigma.test.annotation.EnigmaWebSpringBootTest;
+import io.github.redlotus794.enigma.test.annotation.EnigmaWebSpringBootTest;
 
 /**
  * 订单 Web 测试上下文。
@@ -69,8 +69,8 @@ public class OrderWebTestContext {
 
 模块提供公共 BDD 测试基类：
 
-- `com.rdlts.enigma.test.core.EnigmaCucumberSpringBootBasedTest`
-- `com.rdlts.enigma.test.annotation.EnigmaCucumberSpringBootTest`
+- `io.github.redlotus794.enigma.test.core.EnigmaCucumberSpringBootBasedTest`
+- `io.github.redlotus794.enigma.test.annotation.EnigmaCucumberSpringBootTest`
 
 该基类用于桥接：
 
@@ -87,7 +87,7 @@ public class OrderWebTestContext {
 package com.example.order.bdd;
 
 import com.example.order.OrderApplication;
-import com.rdlts.enigma.test.annotation.EnigmaCucumberSpringBootTest;
+import io.github.redlotus794.enigma.test.annotation.EnigmaCucumberSpringBootTest;
 
 /**
  * 订单领域 BDD 测试上下文。

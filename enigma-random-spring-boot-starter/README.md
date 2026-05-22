@@ -8,14 +8,14 @@
 - 添加项目依赖
 ```xml
 <dependency>
-    <groupId>com.rdlts.enigma</groupId>
+    <groupId>io.github.redlotus794</groupId>
     <artifactId>enigma-random-spring-boot-starter</artifactId>
 </dependency>
 ```
 - 一般对象的随机创建
 
 ```java
-import com.rdlts.enigma.random.domain.EnigmaRandomGenerator;
+import io.github.redlotus794.enigma.random.domain.EnigmaRandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Autowired

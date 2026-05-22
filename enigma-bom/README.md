@@ -10,9 +10,9 @@ Enigma 项目的 BOM (Bill of Materials) 模块，负责管理项目中的依赖
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>com.rdlts.enigma</groupId>
+            <groupId>io.github.redlotus794</groupId>
             <artifactId>enigma-bom</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>2.0.0-SNAPSHOT</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>

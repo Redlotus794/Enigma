@@ -8,7 +8,7 @@ Enigma 基础类通用库，提供项目中常用的工具类和基础设施支�
 
 ```xml
 <dependency>
-    <groupId>com.rdlts.enigma</groupId>
+    <groupId>io.github.redlotus794</groupId>
     <artifactId>enigma-common</artifactId>
     <version>1.0.0</version>
 </dependency>

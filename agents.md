@@ -10,8 +10,8 @@
 | 属性 | 值 |
 |------|-----|
 | 项目名称 | Enigma |
-| GroupId | `com.rdlts.enigma` |
-| 当前版本 | `1.2.0-SNAPSHOT` / `1.1.1-RELEASE` |
+| GroupId | `io.github.redlotus794` |
+| 当前版本 | `2.0.0-SNAPSHOT` |
 | 协议 | GNU General Public License v3.0 (GPL-3.0) |
 | 仓库地址 | https://github.com/Redlotus794/Enigma |
 | Maven 私服 | http://nexus.smil.com:10022/repository/ |
@@ -68,8 +68,8 @@ Enigma/
 ```
 
 ### 核心包路径规则
-- 根包：`com.rdlts.enigma`
-- 各模块子包：`com.rdlts.enigma.<module>.<layer>`（如 `com.rdlts.enigma.ddd.core.event`）
+- 根包：`io.github.redlotus794.enigma`
+- 各模块子包：`io.github.redlotus794.enigma.<module>.<layer>`（如 `io.github.redlotus794.enigma.ddd.core.event`）
 
 ---
 
@@ -310,7 +310,7 @@ cd enigma-ddd && ./mvnw verify -Pfailsafe
 
 ```shell
 # 更新所有模块版本（enigma-bom、enigma-parent、enigma-ddd）
-./mvn_versions.sh set 1.2.0-SNAPSHOT
+./mvn_versions.sh set 2.0.0-SNAPSHOT
 
 # 提交版本更改（删除 .versionsBackup 文件）
 ./mvn_versions.sh commit
@@ -319,10 +319,10 @@ cd enigma-ddd && ./mvnw verify -Pfailsafe
 ./mvn_versions.sh revert
 
 # 带 SSL 跳过参数（私服 SSL 问题时使用）
-./mvn_versions.sh set 1.2.0-SNAPSHOT -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
+./mvn_versions.sh set 2.0.0-SNAPSHOT -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
 
 # 单模块版本更新（在对应目录执行）
-mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
+mvn versions:set -DnewVersion=2.0.0-SNAPSHOT
 mvn versions:commit
 mvn versions:revert
 ```
@@ -392,7 +392,7 @@ docs/
 | `README.md`（根目录） | 技术栈版本变动、模块新增/删除时 |
 | 各模块 `README.md` | 模块 API 变更、新功能上线时 |
 | `agents.md`（本文件） | 规范变更、新技术引入、项目结构调整时 |
-| `docs/domain-driven-design/` | DDD 基本概念定义、架构决策变更时 |
+| `docs/domain-driven-design/` | DDD 基本概念定义、架构决策变更时；修改 Markdown 后必须同步生成 `html/` 下同名 HTML |
 | `docs/ops/log/` | 每一次有意义的代码、配置、文档、规范或架构改动后，按日期记录变更日志 |
 
 ### 11.3 操作日志规则
@@ -403,11 +403,19 @@ docs/
 - 纯查看、搜索、无文件变更的操作无需记录
 - 操作日志不得替代 `CHANGELOG.md`；发布级别变更仍须按发布规则更新 `CHANGELOG.md`
 
-### 11.4 JavaDoc 规范
+### 11.4 领域设计文档同步规则
+
+- `docs/domain-driven-design/*.md` 是领域设计基本概念的源文档
+- `docs/domain-driven-design/html/*.html` 是同名 HTML 预览文件
+- 新增或修改 `docs/domain-driven-design/*.md` 后，必须同步生成或更新 `docs/domain-driven-design/html/{同名}.html`
+- 新增或修改 HTML 预览文件后，也必须确认对应 Markdown 源文档存在且内容一致
+- 两类文件同步完成后，必须记录到 `docs/ops/log/`
+
+### 11.5 JavaDoc 规范
 
 JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专题规范文档，本文件不再维护示例模板。
 
-### 11.5 CHANGELOG 格式
+### 11.6 CHANGELOG 格式
 
 ```markdown
 ## {version}-{RELEASE|SNAPSHOT}
@@ -427,7 +435,7 @@ JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专
 - Bug 修复描述
 ```
 
-### 11.6 参考文档链接
+### 11.7 参考文档链接
 
 | 文档 | 链接 |
 |------|------|

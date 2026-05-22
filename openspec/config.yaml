@@ -3,8 +3,8 @@ schema: spec-driven
 context: |
   # === 项目基本信息 ===
   项目名称：Enigma。
-  GroupId：com.rdlts.enigma。
-  当前版本：1.2.0-SNAPSHOT / 1.1.1-RELEASE。
+  GroupId：io.github.redlotus794。
+  当前版本：2.0.0-SNAPSHOT。
   协议：GNU General Public License v3.0 (GPL-3.0)。
   仓库地址：https://github.com/Redlotus794/Enigma。
 

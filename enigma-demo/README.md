@@ -15,9 +15,9 @@
 
 ```xml
 <parent>
-    <groupId>com.rdlts.enigma</groupId>
+    <groupId>io.github.redlotus794</groupId>
     <artifactId>enigma-parent</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <relativePath>../enigma-parent/pom.xml</relativePath>
 </parent>
 ```
@@ -26,7 +26,7 @@
 
 ```xml
 <dependency>
-    <groupId>com.rdlts.enigma</groupId>
+    <groupId>io.github.redlotus794</groupId>
     <artifactId>enigma-ddd-spring-boot-starter</artifactId>
 </dependency>
 ```
@@ -35,14 +35,14 @@
 
 当前模块已包含以下基础包结构与领域对象：
 
-- `com.rdlts.enigma.demo`
-- `com.rdlts.enigma.demo.application`
-- `com.rdlts.enigma.demo.domain`
-- `com.rdlts.enigma.demo.infrastructure`
-- `com.rdlts.enigma.demo.userinterface`
-- `com.rdlts.enigma.demo.userinterface.openapi`
-- `com.rdlts.enigma.demo.domain.entity.Equipment`
-- `com.rdlts.enigma.demo.domain.valueobject.EquipmentId`
+- `io.github.redlotus794.enigma.demo`
+- `io.github.redlotus794.enigma.demo.application`
+- `io.github.redlotus794.enigma.demo.domain`
+- `io.github.redlotus794.enigma.demo.infrastructure`
+- `io.github.redlotus794.enigma.demo.userinterface`
+- `io.github.redlotus794.enigma.demo.userinterface.openapi`
+- `io.github.redlotus794.enigma.demo.domain.entity.Equipment`
+- `io.github.redlotus794.enigma.demo.domain.valueobject.EquipmentId`
 
 ## 配置说明
 
@@ -65,4 +65,3 @@ cd /Users/wangjialong/github/Enigma/enigma-demo
 mvn -Djacoco.skip=true test
 mvn -Djacoco.skip=true verify
 ```
-
