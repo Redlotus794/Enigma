@@ -15,7 +15,7 @@
 | 协议 | GNU General Public License v3.0 (GPL-3.0) |
 | 仓库地址 | https://github.com/Redlotus794/Enigma |
 | Maven 私服 | http://nexus.smil.com:10022/repository/ |
-| 文档平台 | https://wcnn2j4xsnan.feishu.cn/wiki/H8iEwnymcir1B1kut1UcKDThnOg |
+| 文档平台 | `docs/domain-driven-design/` |
 | 标准示例 | https://github.com/Redlotus794/java-spring-boot-ddd-example |
 | 启动时间 | 2025-11-27 |
 
@@ -54,43 +54,17 @@
 
 ```
 Enigma/
-├── agents.md                          # AI Agent 工作指南（本文件）
-├── CHANGELOG.md                       # 根项目变更日志
-├── FAQ.md                             # 常见问题解答
-├── LICENSE                            # GPL-3.0 协议
-├── README.md                          # 项目说明
-├── mvn_versions.sh                    # 多模块版本管理脚本
-├── docs/                              # 项目文档目录
-│   ├── ops/scripts/                   # 运维脚本（maven_wrapper.sh, versions.sh）
-│   └── project-management/            # 项目管理文档
-├── enigma-bom/                        # BOM 依赖版本统一管理（不继承 parent）
-│   └── pom.xml
-├── enigma-parent/                     # 所有模块的父 POM，统一插件配置
-│   └── pom.xml
-├── enigma-common/                     # 公共基础类（常量、日期工具等）
-│   └── src/main/java/com/rdlts/enigma/common/
-├── enigma-ddd/                        # DDD 多模块子项目
-│   ├── enigma-ddd-core/               # DDD 核心接口与注解（无 Spring 依赖）
-│   │   └── src/main/java/com/rdlts/enigma/ddd/core/
-│   │       ├── cqrs/                  # CQRS：Command / Query
-│   │       ├── event/                 # 领域事件体系
-│   │       ├── exception/             # 领域异常
-│   │       ├── service/               # 领域服务注册
-│   │       ├── support/               # 注解处理器（ValueObjectProcessor）
-│   │       ├── DomainAggregate.java
-│   │       ├── DomainAggregateRoot.java
-│   │       ├── DomainEntity.java
-│   │       ├── DomainRepository.java
-│   │       ├── EntityJsonable.java
-│   │       ├── EntityJsonObject.java
-│   │       ├── EntityVersion.java
-│   │       ├── ValueObject.java       # 编译期值对象注解
-│   │       └── Adapter.java
-│   └── enigma-ddd-spring-boot-starter/ # DDD Spring Boot 自动装配实现
-├── enigma-random-spring-boot-starter/ # 随机对象生成（基于 Easy Random）
-├── enigma-test-spring-boot-starter/   # 测试公共基础设施（常量、启动类等）
-├── enigma-tools-spring-boot-starter/  # 工具类（Spring 上下文工具等）
-└── enigma-tpc-spring-boot-starter/    # 第三方中心（Third Party Center）
+├── docs/                              # 项目文档、规范、操作日志
+├── openspec/                          # OpenSpec 变更规格
+├── enigma-bom/                        # BOM 依赖版本统一管理
+├── enigma-parent/                     # 父 POM 与统一插件配置
+├── enigma-common/                     # 公共基础能力
+├── enigma-ddd/                        # DDD 核心与 Spring Boot Starter
+├── enigma-demo/                       # 示例项目
+├── enigma-random-spring-boot-starter/ # 随机对象生成 Starter
+├── enigma-test-spring-boot-starter/   # 测试基础设施 Starter
+├── enigma-tools-spring-boot-starter/  # 工具能力 Starter
+└── enigma-tpc-spring-boot-starter/    # 第三方中心 Starter
 ```
 
 ### 核心包路径规则
@@ -111,7 +85,7 @@ Enigma/
 | `enigma-ddd/enigma-ddd-core/` | DDD 核心概念接口定义，任何 DDD 类必须实现这里的接口 |
 | `README.md` | 项目背景、技术栈列表、模块导航 |
 | `CHANGELOG.md` | 版本历史，版本号命名规范参考 |
-| 飞书文档 (feishu.cn) | 领域驱动设计概念文档，每个核心接口的 JavaDoc 链接均指向飞书 |
+| `docs/domain-driven-design/` | 领域设计基本概念的唯一事实来源；领域实体、聚合、值对象、资源库、领域服务、领域事件、CQRS 等概念定义必须以该目录文档为准 |
 
 > 说明：自本次规范起，**`agents.md` 与 `README.md` 不再承载代码规范明细**。凡涉及代码风格、分层、命名、接口设计、测试、Maven、数据库等规范判断，**必须仅参考** `docs/dev/convention/`；若出现重复描述或冲突，以 `docs/dev/convention/` 为准。
 
@@ -191,7 +165,8 @@ Enigma/
 - 在 `agents.md`、`README.md` 中出现的任何代码规范、风格示例、命名约束、分层约束、API 约束，均不应再作为判断依据
 - AI Agent 生成代码、修改代码、评审代码时，必须先查阅 `docs/dev/convention/` 中对应主题文档
 - 若 `agents.md`、`README.md`、历史文档、示例代码与 `docs/dev/convention/` 冲突，一律以 `docs/dev/convention/` 为准
-- 若 `docs/dev/convention/` 尚未覆盖某一规范主题，才可退回到 `pom.xml`、DDD 核心接口与飞书文档等其他事实来源判断
+- 若 `docs/dev/convention/` 尚未覆盖某一代码规范主题，不得改用 `pom.xml`、DDD 核心接口、`docs/domain-driven-design/`、历史文档或示例代码作为代码规范来源；应明确说明规范缺口，并按需求补充 `docs/dev/convention/` 后再执行
+- 非代码规范事实（如依赖版本、插件配置、DDD 概念定义）才可参考 `pom.xml`、DDD 核心接口、`docs/domain-driven-design/` 等对应事实来源
 
 ---
 
@@ -395,11 +370,12 @@ mvn versions:display-plugin-updates
 ```
 docs/
 ├── ops/
+│   ├── log/               # 有意义改动的操作日志
 │   └── scripts/           # 运维脚本文档
-│       ├── maven_wrapper.sh
-│       └── versions.sh
-└── project-management/
-    └── 2do.md             # 项目管理待办事项
+├── dev/                   # 开发规范
+├── domain-driven-design/  # 领域设计基本概念
+├── requirements/          # 需求文档
+└── project-management/    # 项目管理文档
 ```
 
 各模块 `README.md` 为**模块级文档**，必须包含：
@@ -416,13 +392,22 @@ docs/
 | `README.md`（根目录） | 技术栈版本变动、模块新增/删除时 |
 | 各模块 `README.md` | 模块 API 变更、新功能上线时 |
 | `agents.md`（本文件） | 规范变更、新技术引入、项目结构调整时 |
-| 飞书文档 | DDD 概念定义、架构决策变更时 |
+| `docs/domain-driven-design/` | DDD 基本概念定义、架构决策变更时 |
+| `docs/ops/log/` | 每一次有意义的代码、配置、文档、规范或架构改动后，按日期记录变更日志 |
 
-### 11.3 JavaDoc 规范
+### 11.3 操作日志规则
+
+- 每一次有意义的改动均须记录到 `docs/ops/log/`，包括代码实现、配置调整、文档规范、架构决策、构建脚本、依赖版本等变更
+- 日志文件按日期命名，格式为 `yyyy-MM-dd.md`
+- 每条日志至少包含：时间、改动范围、改动摘要、验证方式；如未验证，须明确说明原因
+- 纯查看、搜索、无文件变更的操作无需记录
+- 操作日志不得替代 `CHANGELOG.md`；发布级别变更仍须按发布规则更新 `CHANGELOG.md`
+
+### 11.4 JavaDoc 规范
 
 JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专题规范文档，本文件不再维护示例模板。
 
-### 11.4 CHANGELOG 格式
+### 11.5 CHANGELOG 格式
 
 ```markdown
 ## {version}-{RELEASE|SNAPSHOT}
@@ -442,21 +427,13 @@ JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专
 - Bug 修复描述
 ```
 
-### 11.5 参考文档链接
+### 11.6 参考文档链接
 
 | 文档 | 链接 |
 |------|------|
-| 领域驱动设计总览 | https://wcnn2j4xsnan.feishu.cn/wiki/H8iEwnymcir1B1kut1UcKDThnOg |
-| 领域实体 | https://wcnn2j4xsnan.feishu.cn/wiki/LnApwD7IgiC5WgknXP1c1pZxn5d |
-| 聚合根 / 聚合 | https://wcnn2j4xsnan.feishu.cn/wiki/AQrFwGZg4ileJnkdOZccBdK0nSb |
-| 值对象 | https://wcnn2j4xsnan.feishu.cn/wiki/XDWYwYtZyiZptjkooSMcM3rynNf |
-| 领域资源库 | https://wcnn2j4xsnan.feishu.cn/wiki/Np1qwDKAAivbULkkmHTcZptqnBf |
-| 领域服务 | https://wcnn2j4xsnan.feishu.cn/wiki/LVcNwUs2yiamFkkyQIWch7UUnab |
-| 领域事件 | https://wcnn2j4xsnan.feishu.cn/wiki/XQ3lwTTBLiazVQkfmKNcmdCanmg |
-| CQRS | https://wcnn2j4xsnan.feishu.cn/wiki/BMrRwOVQQie0BTklA56c04ywnge |
+| 领域设计基本概念 | `docs/domain-driven-design/` |
 | 标准项目示例 | https://github.com/Redlotus794/java-spring-boot-ddd-example |
 
 ---
 
-*最后更新：2026-05-07*
-
+*最后更新：2026-05-22*
