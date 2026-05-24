@@ -1,8 +1,8 @@
 package io.github.redlotus794.enigma.ddd.core.service;
 
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
-import io.github.redlotus794.enigma.ddd.core.exception.DomainEntityNotFoundException;
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.exception.DomainAggregateRootNotFoundException;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainService;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestId;
 import org.junit.jupiter.api.Assertions;
@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class DomainServiceUtilsTest {
 
     TestDomainService testDomainService = new TestDomainService();
-    TestDomainEntity testEntity1;
-    TestDomainEntity testEntity2;
+    TestEntity testEntity1;
+    TestEntity testEntity2;
     TestId testId1;
     TestId testId2;
 
@@ -24,19 +24,19 @@ class DomainServiceUtilsTest {
     public void setUp() {
         testId1 = new TestId("test-id-1");
         testId2 = new TestId("test-id-2");
-        testEntity1 = TestDomainEntity.builder()
+        testEntity1 = TestEntity.builder()
                 .testId(testId1)
                 .build();
-        testEntity2 = TestDomainEntity.builder()
+        testEntity2 = TestEntity.builder()
                 .testId(testId2)
                 .build();
     }
 
     @Test
     void findBy() {
-        Assertions.assertThrows(DomainEntityNotFoundException.class, () -> testDomainService.findBy(testId1));
+        Assertions.assertThrows(DomainAggregateRootNotFoundException.class, () -> testDomainService.findBy(testId1));
         testDomainService.repository().save(testEntity1);
-        TestDomainEntity foundEntity = testDomainService.findBy(testId1);
+        TestEntity foundEntity = testDomainService.findBy(testId1);
         assertEquals(testEntity1, foundEntity);
     }
 
@@ -47,7 +47,7 @@ class DomainServiceUtilsTest {
 
     @Test
     void repository() {
-        DomainRepository<TestDomainEntity, TestDomainEntity, TestId> repository = testDomainService.repository();
+        DomainRepository<TestEntity, TestId> repository = testDomainService.repository();
         assertNotNull(repository);
     }
 }

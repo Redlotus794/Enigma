@@ -50,7 +50,7 @@ context: |
   DDD 分层：
   - 用户接口层：接收 HTTP 请求，调用应用服务，返回 DTO。
   - 应用服务层：编排领域对象，不包含业务规则，调用 Repository。
-  - 领域层：实现 DomainEntity、DomainAggregate、DomainService 等核心业务规则。
+  - 领域层：实现 DomainEntity、DomainAggregateRoot、DomainService 等核心业务规则。
   - 基础设施层：实现 DomainRepository，与数据库或外部系统交互。
 
   # === OpenSpec 适用范围 ===

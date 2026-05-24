@@ -15,6 +15,11 @@ import java.util.ServiceLoader;
 class DomainEventPublisherTest {
 
     @Test
+    void testHolderConstructor() {
+        Assertions.assertNotNull(new DomainEventPublisherHolder());
+    }
+
+    @Test
     void testInstance() {
         final DomainEventPublisher instance = DomainEventPublisher.instance();
         Assertions.assertNotNull(instance);

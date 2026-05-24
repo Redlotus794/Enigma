@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.ddd.core;
 
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestId;
 import io.github.redlotus794.enigma.ddd.core.test.po.TestDomainEntityPO;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ class AdapterTest {
 
     @Test
     void testAdapt() {
-        TestDomainEntity testDomainEntity = TestDomainEntity.builder()
+        TestEntity testDomainEntity = TestEntity.builder()
                 .testId(new TestId("test-id-1"))
                 .entityVersion(new EntityVersion(1))
                 .build();
@@ -21,10 +21,10 @@ class AdapterTest {
         assertEquals(testDomainEntity.getEntityVersion().getVersion(), adapt.getEntity_version());
     }
 
-    private static class TestDomainEntityPOAdapter implements Adapter<TestDomainEntity, TestDomainEntityPO> {
+    private static class TestDomainEntityPOAdapter implements Adapter<TestEntity, TestDomainEntityPO> {
 
         @Override
-        public TestDomainEntityPO adapt(TestDomainEntity testDomainEntity) {
+        public TestDomainEntityPO adapt(TestEntity testDomainEntity) {
             return new TestDomainEntityPO(
                     testDomainEntity.getTestId().getId(),
                     testDomainEntity.getEntityVersion().getVersion());

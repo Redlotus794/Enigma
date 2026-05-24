@@ -1,7 +1,6 @@
 package io.github.redlotus794.enigma.ddd.spring.repository;
 
-import io.github.redlotus794.enigma.ddd.core.DomainAggregate;
-import io.github.redlotus794.enigma.ddd.core.DomainEntity;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
 
 /**
@@ -17,8 +16,7 @@ import io.github.redlotus794.enigma.ddd.core.DomainRepository;
  * @author wangjialong
  * @since 2025/12/16 10:01
  */
-public interface CachedDomainRepository<DAR extends DomainEntity<IdentityType>,
-        DA extends DomainAggregate<DAR>, IdentityType>
-        extends DomainRepository<DA, DAR, IdentityType> {
+public interface CachedDomainRepository<DAR extends AggregateRoot<IdentityType>, IdentityType>
+        extends DomainRepository<DAR, IdentityType> {
 
 }

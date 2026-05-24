@@ -22,7 +22,7 @@ public class DomainEventTest {
         Assertions.assertNull(empty.eventUuid);
         Assertions.assertEquals(TestDomainEvent.class.getName(), empty.domainEventName());
 
-        TestDomainEntity testDomainEntity = TestDomainEntity
+        TestEntity testDomainEntity = TestEntity
                 .builder()
                 .testId(TestId.builder().id("1").build())
                 .build();
@@ -38,7 +38,7 @@ public class DomainEventTest {
 
     @Test
     void testPersistable() {
-        TestDomainEntity testDomainEntity = TestDomainEntity
+        TestEntity testDomainEntity = TestEntity
                 .builder()
                 .testId(TestId.builder().id("1").build())
                 .build();

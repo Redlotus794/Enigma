@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.test.domain.entity;
 
-import io.github.redlotus794.enigma.ddd.core.DomainSingleEntityAggregate;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.EntityVersion;
 import io.github.redlotus794.enigma.test.domain.valueobject.BracerId;
 import lombok.*;
@@ -19,7 +19,7 @@ import org.jspecify.annotations.NonNull;
 @EqualsAndHashCode
 @Builder
 @ToString
-public class Bracer implements DomainSingleEntityAggregate<Bracer, BracerId> {
+public class Bracer implements AggregateRoot<BracerId> {
 
     @NonNull
     BracerId id;

@@ -13,7 +13,7 @@ import org.jspecify.annotations.NonNull;
  * @since 2025/12/1 16:13
  */
 public class TestDomainService implements DomainService,
-        DomainServiceUtils<TestId, TestDomainEntity, TestDomainEntity> {
+        DomainServiceUtils<TestId, TestEntity> {
 
     // new repository instance
     TestDomainEntityRepository repository = new TestDomainEntityRepository();
@@ -25,7 +25,7 @@ public class TestDomainService implements DomainService,
 
     @NonNull
     @Override
-    public DomainRepository<TestDomainEntity, TestDomainEntity, TestId> repository() {
+    public DomainRepository<TestEntity, TestId> repository() {
         return repository;
     }
 }

@@ -1,7 +1,7 @@
 package io.github.redlotus794.enigma.ddd.core;
 
-import io.github.redlotus794.enigma.ddd.core.exception.DomainEntityNotFoundException;
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.exception.DomainAggregateRootNotFoundException;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntityRepository;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestId;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DomainRepositoryTest {
 
     TestDomainEntityRepository repository;
-    TestDomainEntity testEntity1;
-    TestDomainEntity testEntity2;
+    TestEntity testEntity1;
+    TestEntity testEntity2;
     TestId testId1;
     TestId testId2;
 
@@ -32,17 +32,17 @@ public class DomainRepositoryTest {
         repository = new TestDomainEntityRepository();
         testId1 = new TestId("test-id-1");
         testId2 = new TestId("test-id-2");
-        testEntity1 = TestDomainEntity.builder()
+        testEntity1 = TestEntity.builder()
                 .testId(testId1)
                 .build();
-        testEntity2 = TestDomainEntity.builder()
+        testEntity2 = TestEntity.builder()
                 .testId(testId2)
                 .build();
     }
 
     @Test
     public void testFindShouldReturnEmptyWhenEntityNotExists() {
-        Optional<TestDomainEntity> result = repository.find(testId1);
+        Optional<TestEntity> result = repository.find(testId1);
         assertFalse(result.isPresent());
     }
 
@@ -52,7 +52,7 @@ public class DomainRepositoryTest {
         repository.save(testEntity1);
 
         // When
-        Optional<TestDomainEntity> result = repository.find(testId1);
+        Optional<TestEntity> result = repository.find(testId1);
 
         // Then
         assertTrue(result.isPresent());
@@ -61,7 +61,7 @@ public class DomainRepositoryTest {
 
     @Test
     public void testFindAllShouldReturnEmptyCollectionWhenNoEntities() {
-        Collection<TestDomainEntity> result = repository.findAll();
+        Collection<TestEntity> result = repository.findAll();
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
@@ -73,7 +73,7 @@ public class DomainRepositoryTest {
         repository.save(testEntity2);
 
         // When
-        Collection<TestDomainEntity> result = repository.findAll();
+        Collection<TestEntity> result = repository.findAll();
 
         // Then
         assertNotNull(result);
@@ -88,7 +88,7 @@ public class DomainRepositoryTest {
         repository.save(testEntity1);
 
         // Then
-        Optional<TestDomainEntity> result = repository.find(testId1);
+        Optional<TestEntity> result = repository.find(testId1);
         assertTrue(result.isPresent());
         assertEquals(testEntity1, result.get());
     }
@@ -99,7 +99,7 @@ public class DomainRepositoryTest {
         repository.saveAll(Arrays.asList(testEntity1, testEntity2));
 
         // Then
-        Collection<TestDomainEntity> result = repository.findAll();
+        Collection<TestEntity> result = repository.findAll();
         assertEquals(2, result.size());
         assertTrue(result.contains(testEntity1));
         assertTrue(result.contains(testEntity2));
@@ -114,7 +114,7 @@ public class DomainRepositoryTest {
         repository.remove(testEntity1);
 
         // Then
-        Optional<TestDomainEntity> result = repository.find(testId1);
+        Optional<TestEntity> result = repository.find(testId1);
         assertFalse(result.isPresent());
     }
 
@@ -128,16 +128,21 @@ public class DomainRepositoryTest {
         repository.removeAll(Arrays.asList(testEntity1, testEntity2));
 
         // Then
-        Collection<TestDomainEntity> result = repository.findAll();
+        Collection<TestEntity> result = repository.findAll();
         assertTrue(result.isEmpty());
     }
 
     @Test
     public void testFindRequired() {
-        assertThrows(DomainEntityNotFoundException.class, () -> repository.findRequired(testId1));
+        assertThrows(DomainAggregateRootNotFoundException.class, () -> repository.findRequired(testId1));
 
         repository.save(testEntity1);
-        TestDomainEntity entity = repository.findRequired(testId1);
+        TestEntity entity = repository.findRequired(testId1);
         assertEquals(testEntity1, entity);
+    }
+
+    @Test
+    public void testDefaultNextIdentity() {
+        assertThrows(UnsupportedOperationException.class, repository::nextIdentity);
     }
 }

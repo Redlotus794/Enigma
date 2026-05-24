@@ -1,7 +1,7 @@
 package io.github.redlotus794.enigma.ddd.core.test.ejo;
 
 import io.github.redlotus794.enigma.ddd.core.EntityJsonObject;
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 
 import org.jspecify.annotations.Nullable;
 
@@ -11,19 +11,19 @@ import org.jspecify.annotations.Nullable;
  * @author wangjialong
  * @since 2025/12/2 13:21
  */
-public class PrivateConstructorEntityJsonObject extends EntityJsonObject<TestDomainEntity> {
+public class PrivateConstructorEntityJsonObject extends EntityJsonObject<TestEntity> {
 
-    private PrivateConstructorEntityJsonObject(TestDomainEntity entity) {
+    private PrivateConstructorEntityJsonObject(TestEntity entity) {
         super(entity);
     }
 
     @Override
-    public TestDomainEntity toEntity() {
+    public TestEntity toEntity() {
         return null;
     }
 
     @Override
-    public void asJson(@Nullable TestDomainEntity entity) {
+    public void asJson(@Nullable TestEntity entity) {
         // Do nothing
     }
 }

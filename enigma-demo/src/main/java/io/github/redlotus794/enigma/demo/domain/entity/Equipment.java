@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.demo.domain.entity;
 
-import io.github.redlotus794.enigma.ddd.core.DomainSingleEntityAggregate;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.EntityVersion;
 import io.github.redlotus794.enigma.demo.domain.valueobject.EquipmentId;
 import lombok.EqualsAndHashCode;
@@ -19,7 +19,7 @@ import java.util.Objects;
 @Getter
 @EqualsAndHashCode(exclude = "version")
 @ToString
-public class Equipment implements DomainSingleEntityAggregate<Equipment, EquipmentId> {
+public class Equipment implements AggregateRoot<EquipmentId> {
 
     @NonNull
     private final EquipmentId id;

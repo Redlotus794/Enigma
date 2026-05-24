@@ -1,7 +1,6 @@
 package io.github.redlotus794.enigma.ddd.spring.repository;
 
-import io.github.redlotus794.enigma.ddd.core.DomainAggregate;
-import io.github.redlotus794.enigma.ddd.core.DomainEntity;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
 import io.github.redlotus794.enigma.ddd.spring.event.autolog.RepositoryEventAutoLog;
 import io.github.redlotus794.enigma.ddd.spring.exception.EnigmaRemoveNullObjectException;
@@ -24,17 +23,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2025/12/17 13:51
  */
 @RepositoryEventAutoLog
-public abstract class InMemoryDomainRepository<DAR extends DomainEntity<IdentityType>,
-        DA extends DomainAggregate<DAR>, IdentityType>
-        implements DomainRepository<DA, DAR, IdentityType> {
+public abstract class InMemoryDomainRepository<DAR extends AggregateRoot<IdentityType>, IdentityType>
+        implements DomainRepository<DAR, IdentityType> {
 
     /**
      * In memory store.
      */
-    protected final Map<IdentityType, DA> store = new ConcurrentHashMap<>();
+    protected final Map<IdentityType, DAR> store = new ConcurrentHashMap<>();
 
     @Override
-    public Optional<DA> find(IdentityType identity) {
+    public Optional<DAR> find(IdentityType identity) {
         if (identity == null) {
             return Optional.empty();
         }
@@ -42,33 +40,33 @@ public abstract class InMemoryDomainRepository<DAR extends DomainEntity<Identity
     }
 
     @Override
-    public Collection<DA> findAll() {
+    public Collection<DAR> findAll() {
         return Collections.unmodifiableCollection(store.values());
     }
 
     @Override
-    public void save(DA aggregate) {
-        if (aggregate == null) {
+    public void save(DAR aggregateRoot) {
+        if (aggregateRoot == null) {
             throw new EnigmaSaveNullObjectException();
         }
-        store.put(aggregate.root().identity(), aggregate);
+        store.put(aggregateRoot.identity(), aggregateRoot);
     }
 
     @Override
-    public void saveAll(Collection<DA> aggregateCollection) {
-        aggregateCollection.forEach(this::save);
+    public void saveAll(Collection<DAR> aggregateRootCollection) {
+        aggregateRootCollection.forEach(this::save);
     }
 
     @Override
-    public void remove(DA aggregate) {
-        if (aggregate == null) {
+    public void remove(DAR aggregateRoot) {
+        if (aggregateRoot == null) {
             throw new EnigmaRemoveNullObjectException();
         }
-        store.remove(aggregate.root().identity());
+        store.remove(aggregateRoot.identity());
     }
 
     @Override
-    public void removeAll(Collection<DA> aggregateCollection) {
-        aggregateCollection.forEach(this::remove);
+    public void removeAll(Collection<DAR> aggregateRootCollection) {
+        aggregateRootCollection.forEach(this::remove);
     }
 }

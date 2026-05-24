@@ -23,6 +23,11 @@ import java.util.ServiceLoader;
 public class DomainServiceRegistryTest {
 
     @Test
+    void testHolderConstructor() {
+        Assertions.assertNotNull(new DomainServiceRegistryHolder());
+    }
+
+    @Test
     void testInstance() {
         final DomainServiceRegistry instance = DomainServiceRegistry.instance();
         Assertions.assertNotNull(instance);

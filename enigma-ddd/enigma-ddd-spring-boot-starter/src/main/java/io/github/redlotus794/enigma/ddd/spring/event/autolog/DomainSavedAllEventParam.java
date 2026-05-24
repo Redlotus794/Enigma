@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.ddd.spring.event.autolog;
 
-import io.github.redlotus794.enigma.ddd.core.DomainEntity;
+import io.github.redlotus794.enigma.ddd.core.Entity;
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
 import io.github.redlotus794.enigma.ddd.core.event.DomainEventParam;
 import lombok.EqualsAndHashCode;
@@ -22,12 +22,12 @@ import java.util.Objects;
 public class DomainSavedAllEventParam implements DomainEventParam {
 
     @NonNull
-    Collection<DomainEntity> domainEntities;
+    Collection<Entity> domainEntities;
 
     @NonNull
     Class<? extends DomainRepository> domainRepository;
 
-    public DomainSavedAllEventParam(@NonNull Collection<DomainEntity> domainEntities,
+    public DomainSavedAllEventParam(@NonNull Collection<Entity> domainEntities,
                                     @NonNull Class<? extends DomainRepository> domainRepository) {
         this.domainEntities = Objects.requireNonNull(domainEntities);
         this.domainRepository = Objects.requireNonNull(domainRepository);

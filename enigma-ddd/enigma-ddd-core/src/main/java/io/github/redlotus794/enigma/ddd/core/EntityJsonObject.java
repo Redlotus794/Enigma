@@ -25,7 +25,7 @@ import java.lang.reflect.InvocationTargetException;
  * @author wangjialong
  * @since 2025/7/21 16:26
  */
-public abstract class EntityJsonObject<DE extends DomainEntity<?>> {
+public abstract class EntityJsonObject<DE extends Entity<?>> {
 
     public EntityJsonObject() {
         // 默认构造函数
@@ -61,7 +61,7 @@ public abstract class EntityJsonObject<DE extends DomainEntity<?>> {
      * @deprecated 见EntityJsonable
      *
      * @see EntityJsonable
-     * @see EntityJsonObject#EntityJsonObject(DomainEntity)
+     * @see EntityJsonObject#EntityJsonObject(Entity)
      * @param ejoClass EJO类型
      * @param entity 实体对象
      * @return EntityJsonObject<T> 新的 JSON 对象实例
@@ -70,7 +70,7 @@ public abstract class EntityJsonObject<DE extends DomainEntity<?>> {
      * @throws EnigmaDDDRuntimeException 如果在创建实例或转换过程中发生错误
      */
     @Deprecated
-    public static <DE extends DomainEntity<?>, EJO extends EntityJsonObject<DE>> EJO toEntityJson(
+    public static <DE extends Entity<?>, EJO extends EntityJsonObject<DE>> EJO toEntityJson(
         @NonNull Class<EJO> ejoClass,
         @NonNull DE entity
     ) throws EnigmaDDDRuntimeException {
@@ -101,7 +101,7 @@ public abstract class EntityJsonObject<DE extends DomainEntity<?>> {
      * @param <DE> 领域实体类型
      */
     @NonNull
-    public static <DE extends DomainEntity<?>> DE toEntity(@NonNull EntityJsonObject<DE> entityJsonObject) {
+    public static <DE extends Entity<?>> DE toEntity(@NonNull EntityJsonObject<DE> entityJsonObject) {
         return entityJsonObject.toEntity();
     }
 }

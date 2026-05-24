@@ -13,7 +13,7 @@ public interface EntityJsonable<T extends EntityJsonObject<?>> {
      * 将当前实体转换为对应的 JSON 对象表示。
      * 替代EntityJsonObject中toEntityJson静态方法的使用。
      *
-     * @see EntityJsonObject#toEntityJson(Class, DomainEntity)
+     * @see EntityJsonObject#toEntityJson(Class, Entity)
      * @return T 对应的 JSON 对象
      */
     T toEntityJsonObject();

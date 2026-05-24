@@ -1,9 +1,8 @@
 package io.github.redlotus794.enigma.ddd.core.service;
 
-import io.github.redlotus794.enigma.ddd.core.DomainAggregate;
-import io.github.redlotus794.enigma.ddd.core.DomainAggregateRoot;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
-import io.github.redlotus794.enigma.ddd.core.exception.DomainEntityNotFoundException;
+import io.github.redlotus794.enigma.ddd.core.exception.DomainAggregateRootNotFoundException;
 
 import org.jspecify.annotations.NonNull;
 import java.util.function.Supplier;
@@ -13,32 +12,32 @@ import java.util.function.Supplier;
  *
  * @author wangjialong
  * @since 2025/12/2 11:25
- * @param <PKType>
- * @param <T>
+ * @param <PKType> 聚合根主键类型
+ * @param <DAR> 聚合根类型
  */
-public interface DomainServiceUtils<PKType, DAR extends DomainAggregateRoot<PKType>, DA extends DomainAggregate<DAR>> {
+public interface DomainServiceUtils<PKType, DAR extends AggregateRoot<PKType>> {
 
     /**
      * 查询实体，为空报异常
      * 
      * @see DomainRepository#findRequired(Object)
      * @param pkType PKType
-     * @return DA
-     * @exception DomainEntityNotFoundException 实体未找到异常
+     * @return DAR
+     * @exception DomainAggregateRootNotFoundException 聚合根未找到异常
      */
     @NonNull
-    default DA findBy(PKType pkType) throws DomainEntityNotFoundException {
-        return this.findBy(pkType, DomainEntityNotFoundException::new);
+    default DAR findBy(PKType pkType) throws DomainAggregateRootNotFoundException {
+        return this.findBy(pkType, () -> new DomainAggregateRootNotFoundException(pkType));
     }
 
     /**
      * 查询实体，为空报异常
      * @param pkType PKType
      * @param notFoundException 自定义未找到实体异常
-     * @return DA
+     * @return DAR
      */
     @NonNull
-    default DA findBy(PKType pkType, Supplier<RuntimeException> notFoundException) {
+    default DAR findBy(PKType pkType, Supplier<RuntimeException> notFoundException) {
         return repository().find(pkType).orElseThrow(notFoundException);
     }
 
@@ -47,5 +46,5 @@ public interface DomainServiceUtils<PKType, DAR extends DomainAggregateRoot<PKTy
      * @return DomainRepository
      */
     @NonNull
-    DomainRepository<DA, DAR, PKType> repository();
+    DomainRepository<DAR, PKType> repository();
 }

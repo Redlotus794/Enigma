@@ -11,17 +11,17 @@ import java.time.Instant;
  * @author wangjialong
  * @since 2025/12/2 16:09
  */
-public class TestDomainEvent extends DomainEvent<TestDomainEntity> {
+public class TestDomainEvent extends DomainEvent<TestEntity> {
 
     public TestDomainEvent() {
         super();
     }
 
-    public TestDomainEvent(@NonNull TestDomainEntity eventContent) {
+    public TestDomainEvent(@NonNull TestEntity eventContent) {
         super(eventContent);
     }
 
-    public TestDomainEvent(TestDomainEntity eventContent, Instant eventTime, String createdBy) {
+    public TestDomainEvent(TestEntity eventContent, Instant eventTime, String createdBy) {
         super(eventContent, eventTime, createdBy);
     }
 }

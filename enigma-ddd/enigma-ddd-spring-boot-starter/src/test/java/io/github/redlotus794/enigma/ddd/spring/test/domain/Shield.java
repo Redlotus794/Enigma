@@ -1,12 +1,11 @@
 package io.github.redlotus794.enigma.ddd.spring.test.domain;
 
-import io.github.redlotus794.enigma.ddd.core.DomainSingleEntityAggregate;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.EntityVersion;
 import io.github.redlotus794.enigma.ddd.core.event.DomainEventParam;
 import lombok.*;
 
 import org.jspecify.annotations.NonNull;
-import java.util.UUID;
 
 /**
  * Shield
@@ -19,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class Shield implements DomainSingleEntityAggregate<Shield, ShieldId>, DomainEventParam {
+public class Shield implements AggregateRoot<ShieldId>, DomainEventParam {
 
     @NonNull
     ShieldId shieldId;
@@ -37,12 +36,6 @@ public class Shield implements DomainSingleEntityAggregate<Shield, ShieldId>, Do
     @Override
     public ShieldId identity() {
         return this.shieldId;
-    }
-
-    @NonNull
-    @Override
-    public ShieldId nextIdentity() {
-        return ShieldId.of(UUID.randomUUID().toString());
     }
 
     @NonNull

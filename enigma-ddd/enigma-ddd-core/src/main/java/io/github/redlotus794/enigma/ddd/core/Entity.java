@@ -12,7 +12,7 @@ import org.jspecify.annotations.NonNull;
  * @author wangjialong
  * @since 2025/11/27 14:31
  */
-public interface DomainEntity<PKType> extends DomainAggregateRoot<PKType>, DomainEventParam {
+public interface Entity<PKType> extends DomainEventParam {
 
     /**
      * 实体唯一主键

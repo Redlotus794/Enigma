@@ -3,7 +3,7 @@ package io.github.redlotus794.enigma.ddd.core;
 import io.github.redlotus794.enigma.ddd.core.exception.EnigmaDDDRuntimeException;
 import io.github.redlotus794.enigma.ddd.core.test.ejo.PrivateConstructorEntityJsonObject;
 import io.github.redlotus794.enigma.ddd.core.test.ejo.TestDomainEntityJson;
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,19 +24,19 @@ class EntityJsonObjectTest {
 
     @Test
     void toEntity() {
-        TestDomainEntity testDomainEntity = new TestDomainEntity(
+        TestEntity testDomainEntity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
         TestDomainEntityJson testDomainEntityJson = new TestDomainEntityJson(testDomainEntity);
-        final TestDomainEntity entity = TestDomainEntityJson.toEntity(testDomainEntityJson);
+        final TestEntity entity = TestDomainEntityJson.toEntity(testDomainEntityJson);
         Assertions.assertEquals("testId", entity.getTestId().getId());
         Assertions.assertEquals(1L, entity.getEntityVersion().getVersion());
     }
 
     @Test
     void asJson() {
-        TestDomainEntity testDomainEntity = new TestDomainEntity(
+        TestEntity testDomainEntity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
@@ -48,7 +48,7 @@ class EntityJsonObjectTest {
 
     @Test
     void toEntityJson() {
-        TestDomainEntity testDomainEntity = new TestDomainEntity(
+        TestEntity testDomainEntity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
@@ -61,7 +61,7 @@ class EntityJsonObjectTest {
     @Test
     public void testToEntityJson_NoSuchMethod_ExceptionThrown() {
         // Given
-        TestDomainEntity entity = new TestDomainEntity(
+        TestEntity entity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
@@ -78,7 +78,7 @@ class EntityJsonObjectTest {
     @Test
     public void testToEntityJson_InvocationTargetException_ExceptionThrown() {
         // Given
-        TestDomainEntity entity = new TestDomainEntity(
+        TestEntity entity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
@@ -91,7 +91,7 @@ class EntityJsonObjectTest {
     @Test
     void testToEntityJson_AbstractClass_ExceptionThrown() {
         // Given
-        TestDomainEntity entity = new TestDomainEntity(
+        TestEntity entity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
@@ -109,7 +109,7 @@ class EntityJsonObjectTest {
     @Test
     void testToEntityJson_IllegalAccess_ExceptionThrown() {
         // Given
-        TestDomainEntity entity = new TestDomainEntity(
+        TestEntity entity = new TestEntity(
                 new TestId("testId"),
                 new EntityVersion(1L)
         );
@@ -127,57 +127,57 @@ class EntityJsonObjectTest {
         TestDomainEntityJson testDomainEntityJson = new TestDomainEntityJson();
         testDomainEntityJson.setTestId("test-id-1");
         testDomainEntityJson.setEntityVersion(1L);
-        TestDomainEntity testDomainEntity = testDomainEntityJson.toEntity();
+        TestEntity testDomainEntity = testDomainEntityJson.toEntity();
         Assertions.assertEquals("test-id-1", testDomainEntity.identity().getId());
         Assertions.assertEquals(1L, testDomainEntity.version().getVersion());
     }
 
     // 缺少构造函数的 EntityJsonObject 实现
     @SuppressWarnings("unused")
-    static class NoConstructorEntityJsonObject extends EntityJsonObject<TestDomainEntity> {
+    static class NoConstructorEntityJsonObject extends EntityJsonObject<TestEntity> {
         public NoConstructorEntityJsonObject(String dummy) {
             // 只有一个带String参数的构造函数，没有接受TestEntity的构造函数
         }
 
         @Override
-        public TestDomainEntity toEntity() {
+        public TestEntity toEntity() {
             return null;
         }
 
         @Override
-        public void asJson(@Nullable TestDomainEntity entity) {
+        public void asJson(@Nullable TestEntity entity) {
             // Do nothing
         }
     }
 
-    static class InvocationTargetExceptionEntityJsonObject extends EntityJsonObject<TestDomainEntity> {
-        public InvocationTargetExceptionEntityJsonObject(TestDomainEntity entity) {
+    static class InvocationTargetExceptionEntityJsonObject extends EntityJsonObject<TestEntity> {
+        public InvocationTargetExceptionEntityJsonObject(TestEntity entity) {
             super(entity);
             throw new RuntimeException("模拟构造函数异常");
         }
 
         @Override
-        public TestDomainEntity toEntity() {
+        public TestEntity toEntity() {
             return null;
         }
 
         @Override
-        public void asJson(@Nullable TestDomainEntity entity) {
+        public void asJson(@Nullable TestEntity entity) {
             // 模拟抛出 InvocationTargetException
 //            throw new InvocationTargetException(new Exception("InvocationTargetException"));
         }
     }
 
     // 抽象的 EntityJsonObject 实现
-    static abstract class AbstractEntityJsonObject extends EntityJsonObject<TestDomainEntity> {
-        public AbstractEntityJsonObject(TestDomainEntity entity) {
+    static abstract class AbstractEntityJsonObject extends EntityJsonObject<TestEntity> {
+        public AbstractEntityJsonObject(TestEntity entity) {
             super(entity);
         }
 
         @Override
-        public abstract TestDomainEntity toEntity();
+        public abstract TestEntity toEntity();
 
         @Override
-        public abstract void asJson(@Nullable TestDomainEntity entity);
+        public abstract void asJson(@Nullable TestEntity entity);
     }
 }

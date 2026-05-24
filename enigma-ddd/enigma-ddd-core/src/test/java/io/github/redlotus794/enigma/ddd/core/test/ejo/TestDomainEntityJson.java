@@ -2,7 +2,7 @@ package io.github.redlotus794.enigma.ddd.core.test.ejo;
 
 import io.github.redlotus794.enigma.ddd.core.EntityJsonObject;
 import io.github.redlotus794.enigma.ddd.core.EntityVersion;
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestId;
 import lombok.*;
 
@@ -16,7 +16,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Builder
-public class TestDomainEntityJson extends EntityJsonObject<TestDomainEntity> {
+public class TestDomainEntityJson extends EntityJsonObject<TestEntity> {
 
     String testId;
 
@@ -26,18 +26,18 @@ public class TestDomainEntityJson extends EntityJsonObject<TestDomainEntity> {
         super();
     }
 
-    public TestDomainEntityJson(TestDomainEntity entity) {
+    public TestDomainEntityJson(TestEntity entity) {
         super(entity);
     }
 
     @Override
-    public TestDomainEntity toEntity() {
-        return new TestDomainEntity(new TestId((testId)),
+    public TestEntity toEntity() {
+        return new TestEntity(new TestId((testId)),
                 new EntityVersion(entityVersion));
     }
 
     @Override
-    public void asJson(TestDomainEntity entity) {
+    public void asJson(TestEntity entity) {
         if (entity != null) {
             this.testId = entity.identity().getId();
             this.entityVersion = entity.version().getVersion();

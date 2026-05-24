@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.ddd.spring.event.autolog;
 
-import io.github.redlotus794.enigma.ddd.core.DomainEntity;
+import io.github.redlotus794.enigma.ddd.core.Entity;
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
 import io.github.redlotus794.enigma.ddd.core.event.DomainEventParam;
 import lombok.EqualsAndHashCode;
@@ -21,21 +21,21 @@ import java.util.Objects;
 public class DomainRemovedEventParam implements DomainEventParam {
 
     @NonNull
-    DomainEntity domainEntity;
+    Entity entity;
 
     @NonNull
     Class<? extends DomainRepository> domainRepository;
 
-    public DomainRemovedEventParam(@NonNull DomainEntity domainEntity,
+    public DomainRemovedEventParam(@NonNull Entity entity,
                                    @NonNull Class<? extends DomainRepository> domainRepository) {
-        this.domainEntity = Objects.requireNonNull(domainEntity);
+        this.entity = Objects.requireNonNull(entity);
         this.domainRepository = Objects.requireNonNull(domainRepository);
     }
 
     @Override
     public String toString() {
         return "DomainRemovedEventParam{" +
-                "domainEntity=" + domainEntity +
+                "domainEntity=" + entity +
                 ", domainRepository=" + domainRepository +
                 '}';
     }

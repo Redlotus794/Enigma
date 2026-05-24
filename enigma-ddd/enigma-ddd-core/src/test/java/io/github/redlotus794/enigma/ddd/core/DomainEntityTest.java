@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.ddd.core;
 
-import io.github.redlotus794.enigma.ddd.core.test.domain.TestDomainEntity;
+import io.github.redlotus794.enigma.ddd.core.test.domain.TestEntity;
 import io.github.redlotus794.enigma.ddd.core.test.domain.TestId;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * DomainEntityTest 实体测试类
- * @see DomainEntity
+ * @see Entity
  */
 class DomainEntityTest {
 
@@ -16,7 +16,7 @@ class DomainEntityTest {
     public void testIdentity() {
         // Given
         TestId id = new TestId("test-id");
-        TestDomainEntity entity = TestDomainEntity.builder()
+        TestEntity entity = TestEntity.builder()
                 .testId(id)
                 .build();
 
@@ -35,9 +35,9 @@ class DomainEntityTest {
     @Test
     public void testDefaultVersion() {
         // Given
-        DomainEntity<String> domainEntity = () -> "id";
+        Entity<String> entity = () -> "id";
         // When & Then
-        assertThrows(UnsupportedOperationException.class, domainEntity::version);
+        assertThrows(UnsupportedOperationException.class, entity::version);
     }
 
     @Test
@@ -45,7 +45,7 @@ class DomainEntityTest {
         // Given
         TestId id = new TestId("test-id");
         EntityVersion version = new EntityVersion(5L);
-        TestDomainEntity entity = TestDomainEntity.builder()
+        TestEntity entity = TestEntity.builder()
                 .testId(id)
                 .entityVersion(version)
                 .build();
@@ -56,5 +56,12 @@ class DomainEntityTest {
         // Then
         assertNotNull(actualVersion);
         assertEquals(version.getVersion(), actualVersion.getVersion());
+    }
+
+    @Test
+    public void testDomainEntityIsNotAggregateRootByDefault() {
+        Entity<String> entity = () -> "id";
+
+        assertFalse(entity instanceof AggregateRoot);
     }
 }

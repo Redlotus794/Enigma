@@ -40,7 +40,7 @@ public class RepositoryEventAutoLogTest extends EnigmaSpringBootBasedTest {
                 = ((EnigmaSpringDomainEventRepository) domainEventRepository).findBy(DomainSavedEventParam.class);
 
         final Optional<DomainEvent<DomainSavedEventParam>> first = savedEvent.stream()
-                .filter(t -> t.getEventContent().getDomainEntity().equals(shield))
+                .filter(t -> t.getEventContent().getEntity().equals(shield))
                 .findFirst();
 
         Assertions.assertTrue(first.isPresent());
@@ -75,7 +75,7 @@ public class RepositoryEventAutoLogTest extends EnigmaSpringBootBasedTest {
                 = ((EnigmaSpringDomainEventRepository) domainEventRepository).findBy(DomainRemovedEventParam.class);
 
         final Optional<DomainEvent<DomainRemovedEventParam>> first = savedEvent.stream()
-                .filter(t -> t.getEventContent().getDomainEntity().equals(shield))
+                .filter(t -> t.getEventContent().getEntity().equals(shield))
                 .findFirst();
 
         Assertions.assertTrue(first.isPresent());

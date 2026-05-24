@@ -112,7 +112,7 @@ Enigma/
 ```
 用户接口层 (User Interface)      → 接收 HTTP 请求，调用应用服务，返回 DTO
 应用服务层 (Application Service) → 编排领域对象，不含业务规则，调用 Repository
-领域层 (Domain)              → 实现 DomainEntity / DomainAggregate / DomainService，包含核心业务规则
+领域层 (Domain)              → 实现 DomainEntity / DomainAggregateRoot / DomainService，包含核心业务规则
 基础设施层 (Infrastructure)  → 实现 DomainRepository，与数据库/外部系统交互
 ```
 

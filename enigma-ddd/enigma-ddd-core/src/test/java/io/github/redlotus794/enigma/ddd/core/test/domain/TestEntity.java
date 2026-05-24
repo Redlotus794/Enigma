@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.ddd.core.test.domain;
 
-import io.github.redlotus794.enigma.ddd.core.DomainSingleEntityAggregate;
+import io.github.redlotus794.enigma.ddd.core.AggregateRoot;
 import io.github.redlotus794.enigma.ddd.core.event.DomainEventParam;
 import io.github.redlotus794.enigma.ddd.core.EntityVersion;
 import lombok.*;
@@ -18,7 +18,7 @@ import org.jspecify.annotations.NonNull;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class TestDomainEntity implements DomainSingleEntityAggregate<TestDomainEntity, TestId>, DomainEventParam {
+public class TestEntity implements AggregateRoot<TestId>, DomainEventParam {
 
     @NonNull
     TestId testId;

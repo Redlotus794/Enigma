@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RepositoryEventAutoLog
-public class AutoLogRepository extends InMemoryDomainRepository<Shield, Shield, ShieldId> {
+public class AutoLogRepository extends InMemoryDomainRepository<Shield, ShieldId> {
 
     @Override
     public void save(Shield entity) {

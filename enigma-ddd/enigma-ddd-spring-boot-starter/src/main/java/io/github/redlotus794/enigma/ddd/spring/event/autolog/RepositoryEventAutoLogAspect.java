@@ -1,6 +1,6 @@
 package io.github.redlotus794.enigma.ddd.spring.event.autolog;
 
-import io.github.redlotus794.enigma.ddd.core.DomainEntity;
+import io.github.redlotus794.enigma.ddd.core.Entity;
 import io.github.redlotus794.enigma.ddd.core.DomainRepository;
 import io.github.redlotus794.enigma.ddd.core.event.DomainEventRepository;
 import io.github.redlotus794.enigma.ddd.spring.constant.DomainRepositoryConstant;
@@ -57,7 +57,7 @@ public class RepositoryEventAutoLogAspect {
             }
 
             final Class<? extends DomainRepository> repositoryClass = (Class<? extends DomainRepository>) targetClass;
-            final DomainEntity<?> entity;
+            final Entity<?> entity;
 
             switch (signature.getName()) {
                 case DomainRepositoryConstant.METHOD_SAVE:
@@ -104,13 +104,13 @@ public class RepositoryEventAutoLogAspect {
         return proceedResult;
     }
 
-    public static Collection<DomainEntity> getEntityList(JoinPoint joinPoint) {
+    public static Collection<Entity> getEntityList(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
-        return (Collection<DomainEntity>) Array.get(args, 0);
+        return (Collection<Entity>) Array.get(args, 0);
     }
 
-    public static DomainEntity<?> getEntity(JoinPoint joinPoint) {
-        return (DomainEntity<?>) Array.get(joinPoint.getArgs(),0);
+    public static Entity<?> getEntity(JoinPoint joinPoint) {
+        return (Entity<?>) Array.get(joinPoint.getArgs(),0);
     }
 
 }
