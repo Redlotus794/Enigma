@@ -49,7 +49,6 @@
         <module>../enigma-bom</module>
         <module>../enigma-common</module>
         <module>../enigma-ddd</module>
-        <module>../enigma-demo</module>
         <module>../enigma-random-spring-boot-starter</module>
         <module>../enigma-tpc-spring-boot-starter</module>
         <module>../enigma-tools-spring-boot-starter</module>
