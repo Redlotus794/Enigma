@@ -50,6 +50,8 @@ public class CreateCharacterCommand {
 
     private Integer level;
 
+    private Integer experience;
+
     private Integer hp;
 
     private Integer mp;
@@ -88,8 +90,8 @@ public class CreateCharacterCommand {
 
 | 验证目标 | 调用对象 | 断言重点 |
 |----------|----------|----------|
-| 角色创建规则 | Character 创建行为或应用服务 | 空名称、等级小于 1、负数属性被拒绝 |
-| 状态调整规则 | Character 状态调整行为 | 新状态必须满足业务规则 |
+| 角色创建规则 | Character 创建行为或应用服务 | 空名称、等级小于 1、负数经验或属性被拒绝 |
+| 状态调整规则 | Character 状态调整行为 | 等级、经验、资源值和基础战斗属性必须满足业务规则 |
 | 装备栏规则 | Character 更换装备行为 | 栏位存在、单栏位单装备、替换和卸下结果 |
 | 导力器规则 | Character 配置导力器行为 | 槽位存在、单槽位单回路、核心槽位和普通槽位数量 |
 
@@ -127,7 +129,8 @@ public class CreateCharacterCommand {
   "payload": {
     "characterId": "characterId",
     "characterName": "Lloyd Bannings",
-    "level": 1
+    "level": 1,
+    "experience": 0
   }
 }
 ```
@@ -171,4 +174,3 @@ public class CreateCharacterCommand {
 ## MVP 集成结论
 
 MVP 使用应用服务作为核心集成方式，REST API 作为可选展示入口，测试直接调用领域行为或应用服务。消息队列、防腐层和跨上下文领域事件作为后续迭代能力，不进入第一阶段强制范围。
-
