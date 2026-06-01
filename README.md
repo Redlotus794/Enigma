@@ -53,7 +53,7 @@ Enigma 提供技术栈列表
 - [enigma-demo](enigma-demo/README.md): 基于 enigma-ddd-spring-boot-starter 的示例业务项目
 - [enigma-ddd](enigma-ddd/README.md): 领域驱动设计项目
     - enigma-ddd-core: 领域驱动设计核心模块
-    - enigma-ddd-spring-boot-starter: 领域驱动设计Spring实现
+    - enigma-ddd-spring-boot-starter: 领域驱动设计 Spring 实现，支持领域事件发布与准实时事件
 - enigma-parent: Enigma父项目
 - [enigma-random-spring-boot-starter](enigma-random-spring-boot-starter/README.md): 随机对象构建的Spring boot项目
 - [enigma-test-spring-boot-starter](enigma-test-spring-boot-starter/README.md): 测试框架Spring Boot项目，提供公共测试启动类与 BDD 测试样板

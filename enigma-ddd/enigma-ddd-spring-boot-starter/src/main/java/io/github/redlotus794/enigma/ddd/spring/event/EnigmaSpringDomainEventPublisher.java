@@ -91,7 +91,9 @@ public class EnigmaSpringDomainEventPublisher implements DomainEventPublisher, I
             log.debug("跳过事件发布");
             return;
         }
-        domainEventRepository.save(domainEvent);
+        applicationEventPublisher.publishEvent(new RealTimeExecutionEvent(
+                new DefaultRealTimeExecutionParam(() -> domainEventRepository.save(domainEvent))
+        ));
         applicationEventPublisher.publishEvent(domainEvent);
     }
 
