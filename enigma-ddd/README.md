@@ -3,8 +3,8 @@
 ## 目录
 - [项目简介](#项目简介)
 - [快速开始](#快速开始)
-- [核心概念](#核心概念)
 - [准实时事件](#准实时事件)
+- [核心概念](#核心概念)
 - [最佳实践](#最佳实践)
 
 ### 项目简介
@@ -188,33 +188,33 @@ public class RefreshOrderCacheParam implements RealTimeExecutionParam {
 发布准实时事件：
 
 ```java
-import io.github.redlotus794.enigma.ddd.core.event.DomainEventPublisher;
 import io.github.redlotus794.enigma.ddd.spring.event.RealTimeExecutionEvent;
+import org.springframework.context.ApplicationEventPublisher;
 
 public class OrderApplicationService {
 
-    private final DomainEventPublisher domainEventPublisher;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     private final OrderCacheService orderCacheService;
 
     public OrderApplicationService(
-            DomainEventPublisher domainEventPublisher,
+            ApplicationEventPublisher applicationEventPublisher,
             OrderCacheService orderCacheService) {
-        this.domainEventPublisher = domainEventPublisher;
+        this.applicationEventPublisher = applicationEventPublisher;
         this.orderCacheService = orderCacheService;
     }
 
     public void confirm(String orderId) {
         // 执行业务事务内的领域逻辑和资源库保存
 
-        domainEventPublisher.publish(new RealTimeExecutionEvent(
+        applicationEventPublisher.publishEvent(new RealTimeExecutionEvent(
                 new RefreshOrderCacheParam(orderId, orderCacheService)
         ));
     }
 }
 ```
 
-如果只想发布 Spring 本地事件，也可以直接使用 `ApplicationEventPublisher` 发布 `RealTimeExecutionEvent`。如果通过 `DomainEventPublisher` 发布，需要注意 `EnigmaSpringDomainEventPublisher#setActive(false)` 会在线程级别跳过事件发布。
+如果希望统一走 Enigma 领域事件发布入口，也可以通过 `DomainEventPublisher#publish` 发布 `RealTimeExecutionEvent`。如果通过 `DomainEventPublisher` 发布，需要注意 `EnigmaSpringDomainEventPublisher#setActive(false)` 会在线程级别跳过事件发布。
 
 #### 自定义执行代理
 
