@@ -248,6 +248,8 @@ public TransactionalEventProxy transactionalEventProxy(TaskExecutor taskExecutor
 
 **统一语言**：团队成员之间沟通使用的通用术语集合
 
+**Provider**：用于 Customer / Supplier 集成关系中由 Customer 侧定义的能力抽象。Customer 在领域层定义专用 `XxxProvider` 接口表达自己对 Supplier 的能力诉求，再由基础设施层或防腐层实现该接口，避免领域层直接依赖 Supplier 的 API、SDK、DTO 或 HTTP 客户端。
+
 
 ### 最佳实践
 
