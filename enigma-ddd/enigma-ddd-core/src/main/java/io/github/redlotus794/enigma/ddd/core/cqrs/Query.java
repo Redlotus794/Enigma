@@ -5,10 +5,10 @@ package io.github.redlotus794.enigma.ddd.core.cqrs;
  * Query - 查询模型
  * </a>
  *
- * @see CQRS
+ * @see CqrsRequest
  * @author wangjialong
  * @since 2025/12/01 15:35
  */
-public interface Query extends CQRS {
+public interface Query extends CqrsRequest {
 
 }
