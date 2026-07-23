@@ -11,7 +11,7 @@
 |------|-----|
 | 项目名称 | Enigma |
 | GroupId | `io.github.redlotus794` |
-| 当前版本 | `2.0.0-SNAPSHOT` |
+| 当前版本 | `2.0.0` |
 | 协议 | GNU General Public License v3.0 (GPL-3.0) |
 | 仓库地址 | https://github.com/Redlotus794/Enigma |
 | Maven 私服 | http://nexus.smil.com:10022/repository/ |
