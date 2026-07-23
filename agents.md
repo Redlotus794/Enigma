@@ -133,8 +133,9 @@ Enigma/
 - `DomainRepository.remove()` 的物理/逻辑删除策略由基础设施层决定，领域层不关心
 
 ### 6.3 版本发布安全
-- SNAPSHOT 版本用于开发迭代，RELEASE 版本用于正式发布
-- 版本号格式：`{major}.{minor}.{patch}-RELEASE` 或 `{major}.{minor}.{patch}-SNAPSHOT`
+- 带 `SNAPSHOT` 后缀的版本用于开发迭代，无后缀版本用于正式发布
+- 开发版本格式：`{major}.{minor}.{patch}-SNAPSHOT`
+- 正式版本格式：`{major}.{minor}.{patch}`，不保留 `SNAPSHOT` 或 `RELEASE` 后缀，例如 `2.0.0`
 - 发布到 `http://nexus.smil.com:10022/repository/` 需要对应的 `settings.xml` 认证配置
 
 ---
@@ -283,8 +284,77 @@ cd enigma-parent && ./mvnw clean verify
 - [ ] 覆盖率达到模块要求的阈值
 - [ ] 代码无 Alibaba 规约 Blocker/Critical 警告
 - [ ] `CHANGELOG.md` 更新
-- [ ] 版本号从 `SNAPSHOT` 改为 `RELEASE`（使用 `mvn_versions.sh`）
+- [ ] 版本号从 `SNAPSHOT` 改为无后缀正式版本（例如 `2.0.0`，使用 `mvn_versions.sh`）
+- [ ] 开发日志和操作日志已按当前正式版本合并到 `summary/`
+- [ ] 已确认日志 summary 内容完整，并删除已归档的源 Markdown 日志
 - [ ] 版本提交后部署到 Nexus 私服
+
+### 9.6 Release 分支发布准备流程
+
+当当前分支为 `release/v{major}.{minor}.{patch}`，并且用户要求准备或发布正式版本时，必须按以下顺序执行。分支中的版本号是本次发布版本的唯一输入，例如 `release/v2.0.0` 对应正式版本 `2.0.0`。
+
+#### 9.6.1 路径和文件名约定
+
+- 本仓库 Changelog 的规范文件名是 `CHANGELOG.md`。用户或历史资料中的 `CHANGE_LOG.md` 均映射到该文件，不得创建内容重复的第二份 Changelog。
+- 用户所说的 `dev/logs` 和 `ops/logs` 是日志分类简称，执行前必须解析为仓库中的真实路径：
+  - 开发日志优先使用已存在的 `docs/dev/logs/`，其次使用已存在的 `docs/dev/log/`；两者都不存在时创建 `docs/dev/logs/`。
+  - 操作日志优先使用已存在的 `docs/ops/logs/`，其次使用已存在的 `docs/ops/log/`；当前 Enigma 仓库使用 `docs/ops/log/`。
+- 不得为了匹配单复数拼写而创建与现有日志目录并存的平行目录。
+- summary 文件名中的版本号使用下划线连接：
+  - 开发日志：`dev_log_summary_v_{major}_{minor}_{patch}.md`
+  - 操作日志：`ops_log_summary_v_{major}_{minor}_{patch}.md`
+  - `2.0.0` 对应 `dev_log_summary_v_2_0_0.md` 和 `ops_log_summary_v_2_0_0.md`。
+
+#### 9.6.2 切换正式版本号
+
+1. 确认当前分支名称与目标版本一致，且发布范围已经冻结。
+2. 使用 `./mvn_versions.sh set {version}` 将所有 Maven 模块从 `SNAPSHOT` 统一切换为无后缀正式版本，例如：
+
+   ```shell
+   ./mvn_versions.sh set 2.0.0
+   ```
+
+3. 检查 `enigma-bom`、`enigma-parent`、所有子模块以及模块间依赖引用，确保版本完全一致且不存在目标版本的 `SNAPSHOT` 或 `RELEASE` 后缀。
+4. 同步 `agents.md` 中的“当前版本”和其他明确记录当前发布版本的文档。
+5. 版本检查无误后执行 `./mvn_versions.sh commit`，清理 Maven Versions Plugin 生成的备份文件。
+
+#### 9.6.3 更新 CHANGELOG.md
+
+1. 根据上一个正式版本到当前 release 分支的真实 Git diff、提交记录和日志 summary，整理本次版本的新增、修改、修复、废弃及兼容性影响，不得凭空补写。
+2. 在 `CHANGELOG.md` 中新增当前正式版本章节，例如 `## 2.0.0`，并记录正式发布日期。
+3. 最新版本详情必须位于所有历史版本详情之前；历史发布记录不得改写或删除。
+4. `CHANGELOG.md` 顶部必须包含“版本索引”：
+   - 已存在时，将当前版本链接添加到索引第一项。
+   - 不存在时，创建 `## 版本索引`，为现有版本和当前版本补充可跳转链接。
+   - 索引中的版本顺序必须从新到旧，并验证链接能够跳转到对应版本标题。
+
+#### 9.6.4 合并开发日志
+
+1. 解析开发日志真实目录，并列出其中除 `summary/` 以外的全部 Markdown 日志文件。
+2. 按日志日期和原文件顺序合并内容，保留来源文件、时间、改动范围、摘要和验证结果；重复记录应合并，不得丢失失败记录或未解决风险。
+3. 将合并结果写入开发日志目录的 `summary/dev_log_summary_v_{major}_{minor}_{patch}.md`。
+4. summary 至少包含：发布版本、日志覆盖范围、源文件清单、合并后的变更摘要、验证汇总和遗留风险。
+5. 对照源文件逐项确认 summary 内容完整后，删除已归档的源 Markdown 日志。
+6. 删除时只能使用已核对的精确文件列表；不得删除 `summary/`、summary 文件、非 Markdown 文件或整个日志目录。
+
+#### 9.6.5 合并操作日志
+
+1. 解析操作日志真实目录，并列出其中除 `summary/` 以外的全部 Markdown 日志文件。
+2. 按日志日期和原文件顺序合并内容，保留操作范围、实际命令或操作、验证结果、失败记录和剩余风险。
+3. 将合并结果写入操作日志目录的 `summary/ops_log_summary_v_{major}_{minor}_{patch}.md`。
+4. summary 至少包含：发布版本、日志覆盖范围、源文件清单、发布相关操作摘要、验证汇总和遗留风险。
+5. 对照源文件逐项确认 summary 内容完整后，删除已归档的源 Markdown 日志。
+6. 删除时只能使用已核对的精确文件列表；不得删除 `summary/`、summary 文件、非 Markdown 文件或整个日志目录。
+
+#### 9.6.6 发布前验证
+
+- 确认所有 Maven 模块及内部依赖均为同一个无后缀正式版本。
+- 确认 `CHANGELOG.md` 最新版本详情和版本索引均位于正确位置，且索引链接有效。
+- 确认开发日志和操作日志的 summary 文件名、版本号、源文件清单与实际内容一致。
+- 确认日志目录中除 `summary/` 外不存在已归档的 Markdown 源日志。
+- 使用 Java 8 执行 `cd enigma-parent && ./mvnw clean verify`，确保全部模块、测试和覆盖率检查通过。
+- 使用 `git status` 和 `git diff --stat` 核对版本文件、Changelog、summary 新增文件及源日志删除范围。
+- 提交、推送、合并 `main`、创建标签和部署 Nexus 均属于独立的外部操作，只有用户明确要求后才能执行。
 
 ---
 
@@ -311,6 +381,9 @@ cd enigma-ddd && ./mvnw verify -Pfailsafe
 ```shell
 # 更新所有模块版本（enigma-bom、enigma-parent、enigma-ddd）
 ./mvn_versions.sh set 2.0.0-SNAPSHOT
+
+# 切换为无后缀正式版本
+./mvn_versions.sh set 2.0.0
 
 # 提交版本更改（删除 .versionsBackup 文件）
 ./mvn_versions.sh commit
@@ -418,7 +491,11 @@ JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专
 ### 11.6 CHANGELOG 格式
 
 ```markdown
-## {version}-{RELEASE|SNAPSHOT}
+## 版本索引
+
+- [{major}.{minor}.{patch}](#{major}{minor}{patch})
+
+## {major}.{minor}.{patch}
 
 发布时间: yyyy-MM-dd
 
@@ -444,4 +521,4 @@ JavaDoc 规范统一参考 `docs/dev/convention/java-convention.md` 与相关专
 
 ---
 
-*最后更新：2026-05-22*
+*最后更新：2026-07-23*
