@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.redlotus794</groupId>
         <artifactId>enigma-ddd</artifactId>
-        <version>2.0.0</version>
+        <version>2.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>enigma-ddd-spring-boot-starter</artifactId>
