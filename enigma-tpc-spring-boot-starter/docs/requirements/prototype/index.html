@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma TPC Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">TPC</div>
+            <div>
+                <h1>Enigma TPC</h1>
+                <p>第三方请求编排中心</p>
+            </div>
+        </div>
+        <nav class="nav-list" aria-label="主导航">
+            <button class="nav-item active" data-view="dashboard" type="button">
+                <span class="nav-icon">▦</span>
+                <span>请求看板</span>
+            </button>
+            <button class="nav-item" data-view="requests" type="button">
+                <span class="nav-icon">≡</span>
+                <span>请求管理</span>
+            </button>
+            <button class="nav-item" data-view="delivery" type="button">
+                <span class="nav-icon">↗</span>
+                <span>发运计划</span>
+            </button>
+            <button class="nav-item" data-view="registry" type="button">
+                <span class="nav-icon">⌘</span>
+                <span>注册中心</span>
+            </button>
+            <button class="nav-item" data-view="config" type="button">
+                <span class="nav-icon">⚙</span>
+                <span>配置</span>
+            </button>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Spring Boot Starter Prototype</p>
+                <h2 id="viewTitle">请求看板</h2>
+            </div>
+            <div class="toolbar">
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input id="searchInput" type="search" placeholder="搜索请求 ID / 类型 / 社群">
+                </label>
+                <button class="icon-button" id="refreshButton" type="button" title="刷新数据">↻</button>
+                <button class="primary-button" id="createRequestButton" type="button">新建请求</button>
+            </div>
+        </header>
+
+        <section class="view active" id="dashboardView" data-title="请求看板">
+            <div class="stats-grid">
+                <div class="metric metric-wait">
+                    <span class="metric-label">WAIT</span>
+                    <strong id="waitCount">0</strong>
+                    <small>待发送请求</small>
+                </div>
+                <div class="metric metric-progress">
+                    <span class="metric-label">STAND_BY / RECEIVED</span>
+                    <strong id="progressCount">0</strong>
+                    <small>发送处理中</small>
+                </div>
+                <div class="metric metric-success">
+                    <span class="metric-label">COMPLETED</span>
+                    <strong id="completedCount">0</strong>
+                    <small>完成请求</small>
+                </div>
+                <div class="metric metric-error">
+                    <span class="metric-label">ERROR</span>
+                    <strong id="errorCount">0</strong>
+                    <small>异常请求</small>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>请求生命周期</h3>
+                        <span class="pill">统一状态机</span>
+                    </div>
+                    <div class="flow">
+                        <div class="flow-node">WAIT</div>
+                        <div class="flow-line"></div>
+                        <div class="flow-node">STAND_BY</div>
+                        <div class="flow-line"></div>
+                        <div class="flow-node">RECEIVED</div>
+                        <div class="flow-line"></div>
+                        <div class="flow-node">COMPLETED</div>
+                        <div class="flow-branch">ERROR</div>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>近期异常</h3>
+                        <button class="text-button" data-filter-status="ERROR" type="button">查看全部</button>
+                    </div>
+                    <div class="activity-list" id="errorActivity"></div>
+                </section>
+            </div>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <h3>待处理请求</h3>
+                    <div class="segmented" role="group" aria-label="状态筛选">
+                        <button class="segment active" data-filter-status="ALL" type="button">全部</button>
+                        <button class="segment" data-filter-status="WAIT" type="button">WAIT</button>
+                        <button class="segment" data-filter-status="ERROR" type="button">ERROR</button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>请求 ID</th>
+                            <th>请求类型</th>
+                            <th>社群 / 发送器</th>
+                            <th>状态</th>
+                            <th>执行次数</th>
+                            <th>最后执行时间</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="dashboardTable"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="requestsView" data-title="请求管理">
+            <div class="action-strip">
+                <button class="secondary-button" data-bulk-action="reset" type="button">重置为 WAIT</button>
+                <button class="secondary-button" data-bulk-action="resend" type="button">重发 WAIT 请求</button>
+                <button class="secondary-button" data-bulk-action="manual" type="button">人工设置状态</button>
+                <span id="selectionHint">已选择 0 个请求</span>
+            </div>
+            <section class="panel">
+                <div class="panel-head">
+                    <h3>第三方请求</h3>
+                    <div class="status-tabs" id="requestStatusTabs"></div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th><input id="selectAllRequests" type="checkbox" aria-label="选择全部请求"></th>
+                            <th>请求 ID</th>
+                            <th>请求类型</th>
+                            <th>状态</th>
+                            <th>业务成功</th>
+                            <th>执行次数</th>
+                            <th>请求时间</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="requestTable"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="deliveryView" data-title="发运计划">
+            <div class="split-layout">
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>计划控制</h3>
+                        <span class="pill">按社群执行</span>
+                    </div>
+                    <div class="form-grid">
+                        <label>
+                            第三方社群
+                            <select id="communitySelect">
+                                <option>VehicleCloudCommunity</option>
+                                <option>TelematicsCommunity</option>
+                                <option>MessagePushCommunity</option>
+                            </select>
+                        </label>
+                        <label>
+                            并行计划数
+                            <input id="parallelInput" type="number" value="2" min="1" max="8">
+                        </label>
+                        <label>
+                            超时时间（毫秒）
+                            <input id="timeoutInput" type="number" value="1800000" min="0">
+                        </label>
+                        <label class="toggle-row">
+                            <span>遇错中断</span>
+                            <input id="interruptToggle" type="checkbox" checked>
+                        </label>
+                    </div>
+                    <button class="primary-button full-button" id="runPlanButton" type="button">执行发运计划</button>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>计划队列</h3>
+                        <span class="pill" id="planCount">3 个计划</span>
+                    </div>
+                    <div class="plan-list" id="planList"></div>
+                </section>
+            </div>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <h3>投递结果</h3>
+                    <span class="pill">结果留痕</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>结果 ID</th>
+                            <th>请求 ID</th>
+                            <th>社群</th>
+                            <th>发送器</th>
+                            <th>响应</th>
+                            <th>编码</th>
+                            <th>异常阶段</th>
+                        </tr>
+                        </thead>
+                        <tbody id="resultTable"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="registryView" data-title="注册中心">
+            <div class="registry-grid">
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>请求类型</h3>
+                        <span class="pill">TpcTpRequestType</span>
+                    </div>
+                    <div class="registry-list" id="requestTypeList"></div>
+                </section>
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>第三方社群</h3>
+                        <span class="pill">TpcTpCommunity</span>
+                    </div>
+                    <div class="registry-list" id="communityList"></div>
+                </section>
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>发送器</h3>
+                        <span class="pill">TpcTpSender</span>
+                    </div>
+                    <div class="registry-list" id="senderList"></div>
+                </section>
+            </div>
+        </section>
+
+        <section class="view" id="configView" data-title="配置">
+            <div class="settings-layout">
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>Starter 开关</h3>
+                        <span class="pill">application.yml</span>
+                    </div>
+                    <div class="setting-row">
+                        <div>
+                            <strong>enigma.tpc.enabled</strong>
+                            <p>启用第三方中心自动装配、注册中心和应用服务。</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <div>
+                            <strong>enigma.tpc.request-enabled</strong>
+                            <p>启用请求重置、重发和人工状态设置等运维控制接口。</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span></span>
+                        </label>
+                    </div>
+                </section>
+                <section class="panel">
+                    <div class="panel-head">
+                        <h3>配置预览</h3>
+                        <button class="icon-button" id="copyConfigButton" type="button" title="复制配置">⧉</button>
+                    </div>
+                    <pre class="code-block">enigma:
+  tpc:
+    enabled: true
+    request-enabled: false</pre>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-head">
+        <div>
+            <p class="eyebrow">请求详情</p>
+            <h3 id="drawerTitle">-</h3>
+        </div>
+        <button class="icon-button" id="closeDrawerButton" type="button" title="关闭">×</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

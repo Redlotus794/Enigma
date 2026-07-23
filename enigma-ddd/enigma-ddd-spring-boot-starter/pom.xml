@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.rdlts.enigma</groupId>
+        <groupId>io.github.redlotus794</groupId>
         <artifactId>enigma-ddd</artifactId>
-        <version>1.1.1-RELEASE</version>
+        <version>2.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>enigma-ddd-spring-boot-starter</artifactId>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
@@ -36,17 +36,17 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rdlts.enigma</groupId>
+            <groupId>io.github.redlotus794</groupId>
             <artifactId>enigma-ddd-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.rdlts.enigma</groupId>
+            <groupId>io.github.redlotus794</groupId>
             <artifactId>enigma-random-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.rdlts.enigma</groupId>
+            <groupId>io.github.redlotus794</groupId>
             <artifactId>enigma-tools-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
@@ -57,6 +57,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
         <!-- 日志，影响lombok log4j2 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,7 +68,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.rdlts.enigma</groupId>
+            <groupId>io.github.redlotus794</groupId>
             <artifactId>enigma-test-spring-boot-starter</artifactId>
             <scope>test</scope>
         </dependency>
@@ -88,7 +92,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.rdlts.enigma</groupId>
+                <groupId>io.github.redlotus794</groupId>
                 <artifactId>enigma-bom</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
@@ -117,7 +121,7 @@
                             <version>1.18.38</version>
                         </path>
                         <path>
-                            <groupId>com.rdlts.enigma</groupId>
+                            <groupId>io.github.redlotus794</groupId>
                             <artifactId>enigma-ddd-core</artifactId>
                             <version>${project.version}</version>
                         </path>

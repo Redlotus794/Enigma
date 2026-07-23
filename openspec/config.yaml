@@ -1,0 +1,105 @@
+schema: spec-driven
+
+context: |
+  # === 项目基本信息 ===
+  项目名称：Enigma。
+  GroupId：io.github.redlotus794。
+  当前版本：2.0.0-SNAPSHOT。
+  协议：GNU General Public License v3.0 (GPL-3.0)。
+  仓库地址：https://github.com/Redlotus794/Enigma。
+
+  项目定位：Enigma 是基于 Spring Boot + Java 8 + Maven 的企业级开发标准框架，融合领域驱动设计（DDD）理念，提供可复用的基础设施 Starter 组件，供业务项目快速引入。
+
+  # === 工作语言 ===
+  工作语言：与开发者沟通、proposal、design、tasks、specs 默认使用中文；代码标识符、接口字段、环境变量、命令、第三方库名与标准术语保持英文。
+
+  # === 技术栈基线 ===
+  技术栈基线：
+  - Java 8（source/target 1.8），不得使用 Java 9+ API。
+  - Spring Boot 2.0.7.RELEASE / Spring Framework 5.0.11.RELEASE。
+  - Maven 3.5+，优先使用项目 Maven Wrapper。
+  - Lombok 1.18.38、Fastjson2 2.0.52、Jackson Databind 2.9.7。
+  - JUnit Jupiter 5.1.1、Mockito 4.6.1、JaCoCo 0.8.7。
+
+  # === 事实来源 ===
+  事实来源：
+  - 代码规范唯一事实来源：docs/dev/convention/。凡涉及代码风格、分层、命名、接口设计、测试、Maven、数据库等规范判断，必须仅参考该目录。
+  - 领域设计基本概念唯一事实来源：docs/domain-driven-design/。
+  - 插件版本、覆盖率阈值、编译参数：enigma-parent/pom.xml。
+  - 第三方依赖版本：enigma-bom/pom.xml；子模块不得重复声明版本号。
+  - DDD 核心接口定义：enigma-ddd/enigma-ddd-core/。
+  - 项目背景与模块导航：README.md。
+  - 版本历史：CHANGELOG.md。
+  - 工作空间规则：agents.md。
+
+  若 docs/dev/convention/ 尚未覆盖某一代码规范主题，不得改用 pom.xml、DDD 核心接口、docs/domain-driven-design/、历史文档或示例代码作为代码规范来源；应明确说明规范缺口，并按需求补充 docs/dev/convention/ 后再执行。
+
+  # === 模块边界 ===
+  模块边界：
+  - enigma-bom：统一管理依赖版本，不包含业务代码或 Spring Bean。
+  - enigma-parent：统一插件配置与发布配置，不包含业务代码。
+  - enigma-common：跨模块共享常量和纯工具类，不包含业务逻辑或 DDD 概念。
+  - enigma-ddd-core：DDD 核心接口与注解，必须保持零 Spring 依赖。
+  - enigma-ddd-spring-boot-starter：DDD 的 Spring 实现，承载事件发布、服务注册、AOP 等基础设施。
+  - enigma-random-spring-boot-starter：对象随机化生成能力。
+  - enigma-test-spring-boot-starter：测试公共基础设施，只能以 test scope 引入生产模块。
+  - enigma-tools-spring-boot-starter：Spring 上下文工具等通用能力。
+  - enigma-tpc-spring-boot-starter：第三方服务集成抽象。
+
+  # === DDD 分层 ===
+  DDD 分层：
+  - 用户接口层：接收 HTTP 请求，调用应用服务，返回 DTO。
+  - 应用服务层：编排领域对象，不包含业务规则，调用 Repository。
+  - 领域层：实现 DomainEntity、DomainAggregateRoot、DomainService 等核心业务规则。
+  - 基础设施层：实现 DomainRepository，与数据库或外部系统交互。
+
+  # === OpenSpec 适用范围 ===
+  OpenSpec 适用范围：凡涉及需求、领域模型、接口行为、任务调度、数据持久化、事件流转、用户流程、模块职责或公共规范变化，必须先创建或更新 OpenSpec 再编码。
+
+  # === 安全要求 ===
+  安全要求：不得提交真实密钥、Token、数据库密码、第三方 API Key、生产连接串或其他敏感信息；不得在日志中输出敏感信息；不得将第三方原始错误、原始响应结构、内部系统路径或数据库结构信息直接暴露给外部调用方。
+
+  # === 验证要求 ===
+  验证要求：提交代码前应执行对应模块的 mvn clean verify，或在根目录按项目规则执行全量验证；若仓库当前条件不足以完成验证，不得将未执行命令写成“已验证”。覆盖率阈值以 enigma-parent/pom.xml 和各模块 pom.xml 为准。
+
+  # === 文档与日志要求 ===
+  文档要求：行为、接口、模块职责、命令、依赖或发布流程发生变化时，必须同步更新对应 README、CHANGELOG、OpenSpec 或规范文档。
+  操作日志要求：每一次有意义的代码、配置、文档、规范或架构改动后，必须记录到 docs/ops/log/，日志文件按 yyyy-MM-dd.md 命名，并包含时间、改动范围、改动摘要、验证方式。
+
+  # === 常用命令 ===
+  常用命令：
+  - mvn clean verify
+  - ./mvnw clean verify
+  - cd enigma-ddd && ./mvnw clean install -DskipTests
+  - cd enigma-parent && ./mvnw clean deploy -DskipTests -s /Users/wangjialong/maven/settings/settings-smil.xml
+
+  发布说明：发布到 Smil Nexus 私服时必须使用 /Users/wangjialong/maven/settings/settings-smil.xml；连接 nexus.smil.com:10022 时必须关闭 VPN。
+
+rules:
+  proposal:
+    - 使用中文撰写，聚焦变更动机、范围、影响与不做什么，不写实现细节。
+    - Capabilities 必须与 specs 目录一一对应，名称使用 kebab-case；若没有变更既有规格，在 Modified Capabilities 中写“无”。
+    - 影响分析必须明确受影响模块、代码层、接口、外部依赖、文档和验证范围。
+    - 涉及外部依赖、接口边界、领域模型、调度、持久化、发布流程或模块职责变化时，必须在 What Changes 或 Impact 中体现。
+
+  design:
+    - 使用中文撰写，说明 HOW；必须覆盖 Context、Goals / Non-Goals、Decisions、Risks / Trade-offs，必要时补充 Migration Plan 和 Open Questions。
+    - 设计必须先读取 docs/dev/convention/ 下对应代码规范；设计决策必须与代码规范保持一致，违反规范的地方必须明确说明原因。
+    - 设计涉及 DDD 概念时，必须参考 docs/domain-driven-design/ 和 enigma-ddd/enigma-ddd-core/ 的核心接口定义。
+    - 设计必须体现 DDD 分层边界、模块依赖边界、接口边界和安全约束。
+    - 涉及外部服务、消息、搜索、存储、调度、鉴权、监控或性能影响时，必须说明失败处理、降级策略、幂等控制、可观测性和回滚策略。
+    - 不要引入用户未要求且仓库未提及的额外服务、占位模块或示例代码。
+
+  specs:
+    - 使用中文撰写；所有 Requirement 必须使用 SHALL 或 MUST，且每条 Requirement 至少包含一个 Scenario。
+    - Scenario 必须可测试，使用 WHEN / THEN 表达清楚输入条件、预期结果、错误分支与边界情况。
+    - 涉及 REST / OpenAPI 接口时，规格应覆盖路径、方法、请求、响应、错误处理、权限、分页、排序、过滤等适用约束。
+    - 涉及外部依赖、调度、事件、持久化或监控时，规格应覆盖超时、重试、限流、幂等、补偿、日志或指标等行为要求。
+    - 不得要求暴露第三方原始错误、原始响应结构、内部路径、数据库结构或敏感信息。
+
+  tasks:
+    - 使用中文撰写；严格使用可跟踪复选框格式，按依赖顺序拆分为足够小、可验证的任务。
+    - 任务必须覆盖实现、测试、文档或配置同步、操作日志和验证命令。
+    - 若变更涉及目录结构、接口边界、系统职责、规范或事实来源调整，任务中必须包含 agents.md、README.md 或相关规范文档同步项。
+    - 发布或部署任务必须包含版本检查、CHANGELOG 检查、settings 文件路径检查和 VPN 关闭检查。
+    - 不要把无法在当前仓库独立完成的外部联调、父项目变更或模糊事项写成已完成任务。

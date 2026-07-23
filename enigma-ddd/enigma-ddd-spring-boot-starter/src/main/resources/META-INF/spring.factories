@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.rdlts.enigma.ddd.spring.autoconfigure.EnigmaDDDSpringAutoConfiguration
+io.github.redlotus794.enigma.ddd.spring.autoconfigure.EnigmaDDDSpringAutoConfiguration
